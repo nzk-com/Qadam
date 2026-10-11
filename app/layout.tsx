@@ -1,6 +1,9 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Inter, Lora } from 'next/font/google'
+import { I18nProvider } from '@/components/i18n-provider'
+import { TopBar } from '@/components/top-bar'
+import { getDictionary } from '@/lib/i18n/server'
 import './globals.css'
 
 const inter = Inter({
@@ -13,36 +16,41 @@ const lora = Lora({
   variable: '--font-lora',
 })
 
-export const metadata: Metadata = {
-  title: 'Dala AI — Human-quality AI data for Turkic languages',
-  description:
-    'Платформа для создания, обучения и продажи высококачественных AI-данных на казахском и кыргызском языках: RLHF, red-teaming, локализация, корпуса.',
-  openGraph: {
-    title: 'Dala AI — Human-quality AI data for Turkic languages',
-    description:
-      'RLHF, red-teaming и корпуса на казахском и кыргызском языках от носителей языка.',
-    images: ['/steppe.png'],
-  },
-  icons: {
-    icon: '/icon.svg',
-    apple: '/apple-icon.png',
-  },
+export async function generateMetadata(): Promise<Metadata> {
+  const { t } = await getDictionary()
+  return {
+    title: t.meta.title,
+    description: t.meta.description,
+    openGraph: {
+      title: t.meta.title,
+      description: t.meta.ogDescription,
+      images: ['/steppe.png'],
+    },
+    icons: {
+      icon: '/icon.svg',
+      apple: '/apple-icon.png',
+    },
+  }
 }
 
 export const viewport: Viewport = {
   colorScheme: 'light',
-  themeColor: '#ffffff',
+  themeColor: '#353524',
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const { locale, t } = await getDictionary()
   return (
-    <html lang="ru" className={`${inter.variable} ${lora.variable}`}>
+    <html lang={locale} className={`${inter.variable} ${lora.variable}`}>
       <body className="font-sans antialiased bg-background text-foreground">
-        {children}
+        <I18nProvider locale={locale} dictionary={t}>
+          <TopBar />
+          {children}
+        </I18nProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

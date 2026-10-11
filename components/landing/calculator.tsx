@@ -1,16 +1,21 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import { useI18n } from '@/components/i18n-provider'
+import { SectionHead } from '@/components/section-head'
 import { services } from '@/lib/demo-data'
+import { formatNumber } from '@/lib/i18n/format'
 import { cn } from '@/lib/utils'
 
-const urgency = [
-  { id: 'std', label: 'Стандарт', k: 1 },
-  { id: 'fast', label: 'Ускоренно', k: 1.25 },
-  { id: 'rush', label: 'Срочно', k: 1.5 },
-]
+type ServiceId = (typeof services)[number]['id']
 
-const defaults: Record<string, number> = {
+const urgency = [
+  { id: 'std', k: 1 },
+  { id: 'fast', k: 1.25 },
+  { id: 'rush', k: 1.5 },
+] as const
+
+const defaults: Record<ServiceId, number> = {
   rlhf: 5000,
   redteam: 1000,
   localization: 40,
@@ -18,13 +23,16 @@ const defaults: Record<string, number> = {
   transcription: 100,
 }
 
-const fmt = (n: number) => new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 0 }).format(n)
+const choice = (active: boolean) =>
+  active ? 'border-primary bg-primary text-primary-foreground' : 'border-border hover:bg-secondary'
 
 export function Calculator() {
-  const [serviceId, setServiceId] = useState<string>('rlhf')
+  const { locale, t } = useI18n()
+  const c = t.calculator
+  const [serviceId, setServiceId] = useState<ServiceId>('rlhf')
   const [volume, setVolume] = useState(defaults.rlhf)
   const [langs, setLangs] = useState(1)
-  const [urg, setUrg] = useState('std')
+  const [urg, setUrg] = useState<(typeof urgency)[number]['id']>('std')
 
   const service = services.find((s) => s.id === serviceId)!
   const estimate = useMemo(() => {
@@ -34,21 +42,18 @@ export function Calculator() {
     return { low: base * 0.85, high: base * 1.15 }
   }, [service, volume, langs, urg])
 
-  const unitLabel = service.unit.replace('за ', '')
+  const fmt = (n: number) => formatNumber(locale, n)
+  const large = service.id === 'rlhf' || service.id === 'redteam'
 
   return (
     <section id="calculator" className="scroll-mt-16 border-b border-border bg-secondary">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 md:grid-cols-5 md:px-6 md:py-20">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 md:grid-cols-5 md:px-6 md:py-20">
         <div className="md:col-span-2">
-          <h2 className="font-serif text-3xl font-semibold tracking-tight text-primary">Калькулятор проекта</h2>
-          <p className="mt-3 text-muted-foreground">
-            Ориентировочная оценка стоимости. Точное предложение менеджер подготовит после обсуждения инструкций и
-            образцов данных.
-          </p>
+          <SectionHead index="04" eyebrow={c.eyebrow} title={c.title} text={c.text} />
         </div>
-        <div className="rounded-xl border border-border bg-background p-6 md:col-span-3">
+        <div className="rounded-md border border-border bg-background p-6 md:col-span-3">
           <fieldset>
-            <legend className="text-sm font-medium">Услуга</legend>
+            <legend className="text-sm font-medium">{c.service}</legend>
             <div className="mt-2 flex flex-wrap gap-2">
               {services.map((s) => (
                 <button
@@ -59,14 +64,9 @@ export function Calculator() {
                     setServiceId(s.id)
                     setVolume(defaults[s.id])
                   }}
-                  className={cn(
-                    'rounded-md border px-3 py-1.5 text-sm transition-colors',
-                    serviceId === s.id
-                      ? 'border-primary bg-primary text-primary-foreground'
-                      : 'border-border hover:bg-secondary',
-                  )}
+                  className={cn('rounded-md border px-3 py-1.5 text-sm transition-colors', choice(serviceId === s.id))}
                 >
-                  {s.title}
+                  {t.services.items[s.id].title}
                 </button>
               ))}
             </div>
@@ -74,17 +74,17 @@ export function Calculator() {
 
           <div className="mt-6">
             <label htmlFor="volume" className="flex items-baseline justify-between text-sm font-medium">
-              <span>Объём</span>
+              <span>{c.volume}</span>
               <span className="font-normal text-muted-foreground">
-                {fmt(volume)} · {unitLabel}
+                {fmt(volume)} · {t.services.items[service.id].unitShort}
               </span>
             </label>
             <input
               id="volume"
               type="range"
               min={10}
-              max={service.id === 'rlhf' || service.id === 'redteam' ? 20000 : 500}
-              step={service.id === 'rlhf' || service.id === 'redteam' ? 10 : 1}
+              max={large ? 20000 : 500}
+              step={large ? 10 : 1}
               value={volume}
               onChange={(e) => setVolume(Number(e.target.value))}
               className="mt-3 w-full accent-terracotta"
@@ -93,21 +93,18 @@ export function Calculator() {
 
           <div className="mt-6 grid gap-6 sm:grid-cols-2">
             <fieldset>
-              <legend className="text-sm font-medium">Языки</legend>
+              <legend className="text-sm font-medium">{c.languages}</legend>
               <div className="mt-2 flex gap-2">
                 {[
-                  [1, 'Один язык'],
-                  [2, 'KZ + KG'],
+                  [1, c.langOne],
+                  [2, c.langBoth],
                 ].map(([v, l]) => (
                   <button
                     key={v}
                     type="button"
                     aria-pressed={langs === v}
                     onClick={() => setLangs(v as number)}
-                    className={cn(
-                      'flex-1 rounded-md border px-3 py-1.5 text-sm',
-                      langs === v ? 'border-primary bg-primary text-primary-foreground' : 'border-border hover:bg-secondary',
-                    )}
+                    className={cn('flex-1 rounded-md border px-3 py-1.5 text-sm', choice(langs === v))}
                   >
                     {l}
                   </button>
@@ -115,7 +112,7 @@ export function Calculator() {
               </div>
             </fieldset>
             <fieldset>
-              <legend className="text-sm font-medium">Срочность</legend>
+              <legend className="text-sm font-medium">{c.urgency}</legend>
               <div className="mt-2 flex gap-2">
                 {urgency.map((u) => (
                   <button
@@ -123,20 +120,17 @@ export function Calculator() {
                     type="button"
                     aria-pressed={urg === u.id}
                     onClick={() => setUrg(u.id)}
-                    className={cn(
-                      'flex-1 rounded-md border px-2 py-1.5 text-sm',
-                      urg === u.id ? 'border-primary bg-primary text-primary-foreground' : 'border-border hover:bg-secondary',
-                    )}
+                    className={cn('flex-1 rounded-md border px-2 py-1.5 text-sm', choice(urg === u.id))}
                   >
-                    {u.label}
+                    {c.urgencyLevels[u.id]}
                   </button>
                 ))}
               </div>
             </fieldset>
           </div>
 
-          <div className="mt-8 rounded-lg bg-secondary p-5" aria-live="polite">
-            <p className="text-sm text-muted-foreground">Ориентировочная стоимость</p>
+          <div className="mt-8 rounded-md border border-border bg-secondary p-5" aria-live="polite">
+            <p className="text-sm text-muted-foreground">{c.estimate}</p>
             <p className="mt-1 font-serif text-3xl font-semibold text-primary">
               ${fmt(estimate.low)} – ${fmt(estimate.high)}
             </p>

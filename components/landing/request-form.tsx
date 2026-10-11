@@ -16,9 +16,9 @@ export function RequestForm() {
   const [sent, setSent] = useState(false)
 
   return (
-    <section id="request" className="scroll-mt-16 border-b border-border">
+    <section id="request" className="scroll-mt-28 border-b border-border lg:scroll-mt-20">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 md:grid-cols-2 md:px-6 md:py-20">
-        <SectionHead index="05" eyebrow={r.eyebrow} title={r.title} text={r.text} />
+        <SectionHead index="07" eyebrow={r.eyebrow} title={r.title} text={r.text} />
         {sent ? (
           <div className="flex flex-col items-start justify-center gap-3 rounded-md border border-border bg-secondary p-8" role="status">
             <CheckCircle2 className="size-8 text-success" />

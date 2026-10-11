@@ -25,26 +25,104 @@ export const en: Dictionary = {
     calculator: 'Calculator',
     login: 'Sign in',
     demo: 'Request a demo',
+    pilot: 'Request a pilot',
+    faq: 'FAQ',
     client: 'Client portal',
     academy: 'Academy',
     workspace: 'Workspace',
     admin: 'Admin panel',
   },
   hero: {
-    eyebrow: 'Kazakh · Kyrgyz · KZ/RU code-switching',
     title: 'Human-quality AI data for Turkic languages',
-    text: 'Dala AI trains AI in the languages of Central Asia: RLHF, red-teaming, localization and ready-made corpora from certified native speakers with multi-stage quality control.',
-    ctaPrimary: 'Discuss a project',
-    ctaSecondary: 'View the workspace',
-    imageAlt: 'A steppe horizon at sunset in olive and terracotta tones',
-    stats: [
-      { value: '91%', label: 'gold-standard accuracy' },
-      { value: '8', label: 'evaluation criteria' },
-      { value: '2', label: 'languages plus code-switching' },
+    text: 'RLHF, red-teaming and corpora in Kazakh and Kyrgyz, built by certified native speakers with multi-stage quality control.',
+    ctaSecondary: 'Explore datasets',
+  },
+  heroDemo: {
+    label: 'Live example',
+    legend: 'Which response is more natural and accurate?',
+    check: 'Check my answer',
+    hint: 'Choose a response to compare it with the expert verdict.',
+    correctTitle: 'Matches the expert verdict',
+    wrongTitle: 'Experts chose response A',
+    expertText: 'Response B uses the calques «паспорт» and «ИИН» instead of «жеке куәлік» and «ЖСН».',
+    flagsLine: 'Expert tags for B: {tags}.',
+    retry: 'Try again',
+    open: 'Open the workspace',
+  },
+  audience: {
+    eyebrow: 'Audience',
+    title: 'Who it’s for',
+    text: 'Dala AI works with teams that need Kazakh and Kyrgyz AI to be reliable in production.',
+    items: [
+      {
+        title: 'AI teams',
+        text: 'LLM developers and labs that need native-quality evaluation and training data.',
+        points: [
+          'RLHF preference data with double annotation',
+          'Red-teaming for local failure modes',
+          'Gold-standard benchmarks in Kazakh and Kyrgyz',
+        ],
+      },
+      {
+        title: 'Enterprises',
+        text: 'Banks, telecom, the public sector and companies running chatbots in Central Asia.',
+        points: [
+          'Assistant answers rated for terminology and tone',
+          'Localization without calques from Russian',
+          'NDA, RBAC and project-level data separation',
+        ],
+      },
+      {
+        title: 'Researchers',
+        text: 'Universities and research groups working on Turkic NLP.',
+        points: [
+          'Academic licenses at a discount or free',
+          'Ready corpora with documented methodology',
+          'Code-switching and morphology datasets',
+        ],
+      },
     ],
-    cardLabel: 'Response B · naturalness',
-    cardFlag: 'calque from Russian',
-    cardNote: 'Tag added by the annotator · verified by a QA linguist',
+  },
+  cta: {
+    mid: {
+      title: 'Test the quality on your own data',
+      text: 'Start with a pilot batch: send your instructions and sample prompts, and we return annotated data with a QA report.',
+    },
+    final: {
+      title: 'Ready to see what native experts change?',
+      text: 'Tell us your language, domain and volume. A manager replies within one business day.',
+    },
+  },
+  faq: {
+    eyebrow: 'FAQ',
+    title: 'Frequently asked questions',
+    more: 'Still have questions?',
+    items: [
+      {
+        q: 'How do you ensure data quality?',
+        a: 'Every annotator is certified and signs an NDA. Each task is rated independently by at least two people, hidden gold-standard tasks measure accuracy in the background, and a QA linguist arbitrates disputed cases. Our target accuracy on gold-standard tasks is 85–90% or higher, and every delivery comes with a QA report.',
+      },
+      {
+        q: 'Do you handle KZ/RU code-switching?',
+        a: 'Yes. Our linguists are bilingual and annotate mixed Kazakh–Russian text, judging whether a switch is natural or a calque. We also offer a dedicated KZ-RU Code-Switching corpus of 120,000 utterances.',
+      },
+      {
+        q: 'What does a pilot look like?',
+        a: 'A pilot is a limited batch of tasks on your own data and instructions, so you can assess quality before scaling. Send a request and a manager replies within one business day with the scope, timeline and price.',
+      },
+      {
+        q: 'How is our data protected?',
+        a: 'Every annotator signs an NDA, data is separated by project, access is role-based (RBAC), all actions are logged, and data is encrypted in transit and at rest. Downloads of source data are restricted, previews are watermarked, and we delete your data on request.',
+      },
+      {
+        q: 'Which delivery formats do you support?',
+        a: 'JSONL and CSV by default, plus XLSX and Google Sheets export. Every delivery includes a QA report on errors and annotator agreement.',
+      },
+      {
+        q: 'Can you build a custom corpus?',
+        a: 'Yes. Tell us the language, domain (banking, public services, telecom, medicine), volume and license type. We scope the collection, annotate it with certified native speakers and deliver it under a commercial, subscription or academic license.',
+      },
+    ],
   },
   services: {
     eyebrow: 'Services',
@@ -105,11 +183,12 @@ export const en: Dictionary = {
     eyebrow: 'Catalog',
     title: 'Corpus catalog',
     text: 'Ready-made licensed datasets. An academic license is available for research at a discount or free of charge.',
-    cols: { name: 'Corpus', lang: 'Language', size: 'Size', license: 'License' },
-    sample: 'Sample',
+    cols: { name: 'Corpus', lang: 'Language', size: 'Size', license: 'License', status: 'Status' },
+    statuses: { available: 'Available', production: 'In production', custom: 'Custom build' },
+    actions: { available: 'Request a sample', production: 'Join the waitlist', custom: 'Discuss a build' },
     languages: { kk: 'Kazakh', ky: 'Kyrgyz', mix: 'Kazakh / Russian' },
     units: { dialogs: 'dialogues', qa: 'QA pairs', utterances: 'utterances', terms: 'terms' },
-    licenses: { commercial: 'Commercial', subscription: 'Subscription', academic: 'Academic' },
+    licenses: { commercial: 'Commercial', subscription: 'Subscription', academic: 'Academic', custom: 'On request' },
   },
   calculator: {
     eyebrow: 'Estimate',

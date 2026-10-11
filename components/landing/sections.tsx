@@ -1,18 +1,25 @@
 import Link from 'next/link'
-import { Check, Download, Mail } from 'lucide-react'
+import { ArrowRight, Check, Download, Mail } from 'lucide-react'
 import { Logo } from '@/components/logo'
 import { SectionHead } from '@/components/section-head'
-import { corpora, services } from '@/lib/demo-data'
+import { corpora, services, type CorpusStatusId } from '@/lib/demo-data'
 import { formatMessage, formatNumber } from '@/lib/i18n/format'
 import { getDictionary } from '@/lib/i18n/server'
+import { cn } from '@/lib/utils'
+
+const statusStyles: Record<CorpusStatusId, { badge: string; dot: string }> = {
+  available: { badge: 'bg-success/10 text-success', dot: 'bg-success' },
+  production: { badge: 'bg-terracotta/10 text-terracotta', dot: 'bg-terracotta' },
+  custom: { badge: 'bg-accent text-primary', dot: 'bg-sand' },
+}
 
 export async function Services() {
   const { t } = await getDictionary()
   const s = t.services
   return (
-    <section id="services" className="scroll-mt-16 border-b border-border">
+    <section id="services" className="scroll-mt-28 border-b border-border lg:scroll-mt-20">
       <div className="mx-auto max-w-7xl px-4 py-16 md:px-6 md:py-20">
-        <SectionHead index="01" eyebrow={s.eyebrow} title={s.title} text={s.text} />
+        <SectionHead index="02" eyebrow={s.eyebrow} title={s.title} text={s.text} />
         <div className="mt-10 grid gap-px overflow-hidden rounded-md border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
           {services.map((item, i) => {
             const info = s.items[item.id]
@@ -37,9 +44,12 @@ export async function Quality() {
   const { t } = await getDictionary()
   const q = t.quality
   return (
-    <section id="quality" className="scroll-mt-16 border-b border-border bg-primary text-primary-foreground">
+    <section
+      id="quality"
+      className="scroll-mt-28 border-b border-border bg-primary text-primary-foreground lg:scroll-mt-20"
+    >
       <div className="mx-auto max-w-7xl px-4 py-16 md:px-6 md:py-20">
-        <SectionHead index="02" eyebrow={q.eyebrow} title={q.title} inverse />
+        <SectionHead index="03" eyebrow={q.eyebrow} title={q.title} inverse />
         <ol className="mt-10 grid gap-px overflow-hidden rounded-md bg-white/15 sm:grid-cols-2 lg:grid-cols-5">
           {q.steps.map((step, i) => (
             <li key={step.title} className="bg-primary p-5">
@@ -66,14 +76,15 @@ export async function Corpora() {
   const { locale, t } = await getDictionary()
   const c = t.corpora
   return (
-    <section id="corpora" className="scroll-mt-16 border-b border-border">
+    <section id="corpora" className="scroll-mt-28 border-b border-border lg:scroll-mt-20">
       <div className="mx-auto max-w-7xl px-4 py-16 md:px-6 md:py-20">
-        <SectionHead index="03" eyebrow={c.eyebrow} title={c.title} text={c.text} />
+        <SectionHead index="04" eyebrow={c.eyebrow} title={c.title} text={c.text} />
         <div className="mt-10 overflow-x-auto rounded-md border border-border">
-          <table className="w-full min-w-[600px] text-left text-sm">
+          <table className="w-full min-w-[720px] text-left text-sm">
             <thead className="bg-secondary text-muted-foreground">
               <tr>
                 <th className="px-4 py-3 font-medium">{c.cols.name}</th>
+                <th className="px-4 py-3 font-medium">{c.cols.status}</th>
                 <th className="px-4 py-3 font-medium">{c.cols.lang}</th>
                 <th className="px-4 py-3 font-medium">{c.cols.size}</th>
                 <th className="px-4 py-3 font-medium">{c.cols.license}</th>
@@ -84,17 +95,37 @@ export async function Corpora() {
               {corpora.map((row) => (
                 <tr key={row.name} className="border-t border-border">
                   <td className="px-4 py-3 font-medium">{row.name}</td>
+                  <td className="px-4 py-3">
+                    <span
+                      className={cn(
+                        'inline-flex items-center gap-1.5 whitespace-nowrap rounded-sm px-2.5 py-0.5 text-xs font-medium',
+                        statusStyles[row.status].badge,
+                      )}
+                    >
+                      <span className={cn('size-1.5 rounded-full', statusStyles[row.status].dot)} aria-hidden="true" />
+                      {c.statuses[row.status]}
+                    </span>
+                  </td>
                   <td className="px-4 py-3 text-muted-foreground">{c.languages[row.lang]}</td>
-                  <td className="px-4 py-3 text-muted-foreground">
-                    {formatNumber(locale, row.n)} {c.units[row.unit]}
+                  <td className="whitespace-nowrap px-4 py-3 text-muted-foreground">
+                    {row.n === null ? '—' : `${formatNumber(locale, row.n)} ${c.units[row.unit]}`}
                   </td>
                   <td className="px-4 py-3">
-                    <span className="rounded-sm bg-accent px-2.5 py-0.5 text-xs">{c.licenses[row.license]}</span>
+                    <span className="whitespace-nowrap rounded-sm bg-accent px-2.5 py-0.5 text-xs">
+                      {c.licenses[row.license]}
+                    </span>
                   </td>
                   <td className="px-4 py-3 text-right">
-                    <a href="#request" className="inline-flex items-center gap-1.5 text-terracotta hover:underline">
-                      <Download className="size-4" />
-                      {c.sample}
+                    <a
+                      href="#request"
+                      className="inline-flex items-center gap-1.5 whitespace-nowrap text-terracotta hover:underline"
+                    >
+                      {row.status === 'available' ? (
+                        <Download className="size-4" aria-hidden="true" />
+                      ) : (
+                        <ArrowRight className="size-4" aria-hidden="true" />
+                      )}
+                      {c.actions[row.status]}
                     </a>
                   </td>
                 </tr>

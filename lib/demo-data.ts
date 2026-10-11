@@ -39,12 +39,40 @@ export const services = [
   { id: 'transcription', price: 45 },
 ] as const
 
-export const corpora = [
-  { name: 'KZ-Banking-Dialogues', lang: 'kk', n: 48000, unit: 'dialogs', license: 'commercial' },
-  { name: 'KG-GovServices-QA', lang: 'ky', n: 21500, unit: 'qa', license: 'commercial' },
-  { name: 'KZ-RU Code-Switching', lang: 'mix', n: 120000, unit: 'utterances', license: 'subscription' },
-  { name: 'KZ-Medical-Terms', lang: 'kk', n: 9800, unit: 'terms', license: 'academic' },
-] as const
+export const corpusStatusIds = ['available', 'production', 'custom'] as const
+export type CorpusStatusId = (typeof corpusStatusIds)[number]
+
+export const corpora: ReadonlyArray<{
+  name: string
+  lang: 'kk' | 'ky' | 'mix'
+  n: number | null
+  unit: 'dialogs' | 'qa' | 'utterances' | 'terms'
+  license: 'commercial' | 'subscription' | 'academic' | 'custom'
+  status: CorpusStatusId
+}> = [
+  { name: 'KZ-Banking-Dialogues', lang: 'kk', n: 48000, unit: 'dialogs', license: 'commercial', status: 'available' },
+  { name: 'KZ-RU Code-Switching', lang: 'mix', n: 120000, unit: 'utterances', license: 'subscription', status: 'available' },
+  { name: 'KZ-Medical-Terms', lang: 'kk', n: 9800, unit: 'terms', license: 'academic', status: 'available' },
+  { name: 'KG-GovServices-QA', lang: 'ky', n: 21500, unit: 'qa', license: 'commercial', status: 'production' },
+  { name: 'KZ-Telecom-Support', lang: 'kk', n: null, unit: 'dialogs', license: 'custom', status: 'custom' },
+]
+
+export const heroDemo = {
+  taskId: rlhfTask.id,
+  prompt: rlhfTask.prompt,
+  responses: [
+    {
+      id: 'A',
+      text: 'Жеке шот ашу үшін жеке куәлігіңіз және ЖСН қажет. Кейбір банктер тұрғылықты жерді растайтын құжат сұрайды.',
+    },
+    {
+      id: 'B',
+      text: 'Жеке шотты ашу үшін сізге паспорт және ИИН қажет болады. Сонымен қатар, сіз қосымша құжаттарды ұсынуыңыз керек болуы мүмкін.',
+    },
+  ],
+  tags: ['calque', 'terms', 'morph'] as TagId[],
+  expert: { best: 'A', tags: ['calque', 'terms'] as TagId[] },
+}
 
 export const clientProjects = [
   { id: 'bank', type: 'rlhf', progress: 62, done: 3100, total: 5000, unit: 'tasks', quality: 93, status: 'inProgress' },

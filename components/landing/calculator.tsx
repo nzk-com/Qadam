@@ -46,10 +46,10 @@ export function Calculator() {
   const large = service.id === 'rlhf' || service.id === 'redteam'
 
   return (
-    <section id="calculator" className="scroll-mt-16 border-b border-border bg-secondary">
+    <section id="calculator" className="scroll-mt-28 border-b border-border bg-secondary lg:scroll-mt-20">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 md:grid-cols-5 md:px-6 md:py-20">
         <div className="md:col-span-2">
-          <SectionHead index="04" eyebrow={c.eyebrow} title={c.title} text={c.text} />
+          <SectionHead index="05" eyebrow={c.eyebrow} title={c.title} text={c.text} />
         </div>
         <div className="rounded-md border border-border bg-background p-6 md:col-span-3">
           <fieldset>

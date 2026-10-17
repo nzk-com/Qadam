@@ -28,7 +28,7 @@ export async function SiteHeader() {
         </nav>
         <div className="flex items-center gap-2">
           <Link
-            href="/client"
+            href="/login"
             className={cn(buttonVariants({ variant: 'ghost' }), 'hidden sm:inline-flex lg:hidden xl:inline-flex')}
           >
             {t.nav.login}
@@ -47,7 +47,7 @@ export async function SiteHeader() {
               {l.label}
             </a>
           ))}
-          <Link href="/client" className="whitespace-nowrap px-3 py-2.5 text-sm text-muted-foreground hover:text-foreground sm:hidden">
+          <Link href="/login" className="whitespace-nowrap px-3 py-2.5 text-sm text-muted-foreground hover:text-foreground sm:hidden">
             {t.nav.login}
           </Link>
         </div>

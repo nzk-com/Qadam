@@ -19,10 +19,10 @@ export function AppHeader() {
   }, [pathname])
 
   const links = [
-    { href: '/client', label: t.nav.client },
+    { href: '/client', label: 'Клиент' },
+    { href: '/workspace', label: 'Задания' },
     { href: '/academy', label: t.nav.academy },
-    { href: '/workspace', label: t.nav.workspace },
-    { href: '/admin', label: t.nav.admin },
+    { href: '/admin', label: 'Админ' },
   ]
 
   return (

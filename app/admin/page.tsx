@@ -1,109 +1,164 @@
-import type { Metadata } from 'next'
+'use client'
+
+import { useEffect, useState } from 'react'
+import Link from 'next/link'
+import { Activity, Shield, Users, AlertTriangle } from 'lucide-react'
 import { AppHeader } from '@/components/app-header'
 import { Progress } from '@/components/progress'
-import { adminStats, auditTimes, disputes, team } from '@/lib/demo-data'
-import { formatMessage, formatNumber } from '@/lib/i18n/format'
-import { getDictionary } from '@/lib/i18n/server'
+import { buttonVariants } from '@/components/ui/button'
+import { adminStats, team, disputes, auditTimes, taskStats } from '@/lib/demo-data'
+import { loadDemoUser, type DemoUser } from '@/lib/demo-auth'
+import { cn } from '@/lib/utils'
 
-export async function generateMetadata(): Promise<Metadata> {
-  const { t } = await getDictionary()
-  return { title: t.meta.admin }
-}
+export default function AdminPanelPage() {
+  const [user, setUser] = useState<DemoUser | null>(null)
 
-export default async function Page() {
-  const { locale, t } = await getDictionary()
-  const a = t.admin
-  const statValue = (s: (typeof adminStats)[number]) =>
-    s.kind === 'pct'
-      ? `${formatNumber(locale, s.value, { maximumFractionDigits: 1 })}%`
-      : formatNumber(locale, s.value)
+  useEffect(() => {
+    setUser(loadDemoUser())
+  }, [])
 
   return (
     <>
       <AppHeader />
-      <main className="mx-auto max-w-7xl px-4 py-8 md:px-6">
-        <div className="border-b border-border pb-6">
-          <h1 className="font-serif text-3xl font-semibold tracking-tight text-primary">{a.title}</h1>
-          <p className="text-sm text-muted-foreground">{a.subtitle}</p>
+      <main className="min-h-[calc(100vh-3.5rem)] bg-[#0f172a] text-slate-100">
+        <div className="border-b border-white/10 bg-[#111827]">
+          <div className="mx-auto flex max-w-7xl flex-wrap items-end justify-between gap-4 px-4 py-8 md:px-6">
+            <div>
+              <p className="text-xs font-medium uppercase tracking-wide text-sky-400">Админ-панель</p>
+              <h1 className="mt-1 text-3xl font-semibold tracking-tight text-white">
+                Операционная сводка
+              </h1>
+              <p className="mt-2 max-w-xl text-sm text-slate-400">
+                Отдельная страница администратора: задания, участники, споры, аудит.
+                {user ? (
+                  <span className="mt-1 block text-sky-300">
+                    Сессия: {user.name} · роль «{user.role}»
+                  </span>
+                ) : (
+                  <span className="mt-1 block">
+                    Вы не вошли.{' '}
+                    <Link href="/login" className="text-sky-400 underline">
+                      Войти как админ
+                    </Link>
+                  </span>
+                )}
+              </p>
+            </div>
+            <div className="flex gap-2">
+              <Link
+                href="/login"
+                className="rounded-lg border border-white/20 px-3 py-2 text-sm text-slate-200 hover:bg-white/5"
+              >
+                Сменить роль
+              </Link>
+              <Link
+                href="/workspace"
+                className="rounded-lg bg-sky-500 px-3 py-2 text-sm font-medium text-white hover:bg-sky-400"
+              >
+                К заданиям
+              </Link>
+            </div>
+          </div>
         </div>
 
-        <dl className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
-          {adminStats.map((s, i) => (
-            <div key={a.stats[i].label} className="rounded-md border border-border bg-secondary p-4">
-              <dt className="text-xs text-muted-foreground">{a.stats[i].label}</dt>
-              <dd className="mt-1 font-serif text-2xl font-semibold text-primary">{statValue(s)}</dd>
-              <p className="mt-1 text-xs text-success">{a.stats[i].delta}</p>
-            </div>
-          ))}
-        </dl>
+        <div className="mx-auto max-w-7xl px-4 py-8 md:px-6">
+          <dl className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+            {[
+              { label: 'Всего заданий', value: String(taskStats.total), icon: Activity },
+              { label: 'Казахский (kk)', value: String(taskStats.byLanguage.kk), icon: Activity },
+              { label: 'Кыргызский (ky)', value: String(taskStats.byLanguage.ky), icon: Activity },
+              { label: 'Код-свитч', value: String(taskStats.byLanguage['kk-ru']), icon: Activity },
+            ].map((s) => (
+              <div key={s.label} className="rounded-xl border border-white/10 bg-white/5 p-4">
+                <dt className="flex items-center gap-2 text-xs text-slate-400">
+                  <s.icon className="size-3.5" />
+                  {s.label}
+                </dt>
+                <dd className="mt-2 text-2xl font-semibold text-white">{s.value}</dd>
+              </div>
+            ))}
+          </dl>
 
-        <div className="mt-8 grid gap-6 lg:grid-cols-2">
-          <section aria-labelledby="team">
-            <h2 id="team" className="font-serif text-xl font-semibold text-primary">{a.teamTitle}</h2>
-            <div className="mt-3 overflow-x-auto rounded-md border border-border">
-              <table className="w-full min-w-[480px] text-left text-sm">
-                <thead className="bg-secondary text-muted-foreground">
-                  <tr>
-                    <th className="px-4 py-3 font-medium">{a.teamCols.member}</th>
-                    <th className="px-4 py-3 font-medium">{a.teamCols.lang}</th>
-                    <th className="px-4 py-3 font-medium">{a.teamCols.load}</th>
-                    <th className="px-4 py-3 font-medium">{a.teamCols.accuracy}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {team.map((m, i) => (
-                    <tr key={a.names[i]} className="border-t border-border">
-                      <td className="px-4 py-3">
-                        <p className="font-medium">{a.names[i]}</p>
-                        <p className="text-xs text-muted-foreground">{m.role}</p>
-                      </td>
-                      <td className="px-4 py-3 text-muted-foreground">{m.lang}</td>
-                      <td className="w-40 px-4 py-3">
-                        <Progress
-                          value={m.load}
-                          label={formatMessage(a.loadOf, { name: a.names[i] })}
-                          tone={m.load > 85 ? 'terracotta' : 'primary'}
-                        />
-                      </td>
-                      <td className="px-4 py-3 tabular-nums">{m.accuracy}%</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </section>
+          <div className="mt-8 grid gap-6 lg:grid-cols-2">
+            <section className="rounded-xl border border-white/10 bg-white/5 p-5">
+              <div className="mb-4 flex items-center gap-2">
+                <Users className="size-5 text-sky-400" />
+                <h2 className="text-lg font-semibold text-white">Участники (демо)</h2>
+              </div>
+              <ul className="space-y-3">
+                {team.map((m, i) => (
+                  <li
+                    key={i}
+                    className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-white/10 bg-black/20 px-3 py-3"
+                  >
+                    <div>
+                      <p className="font-medium text-white">{m.role}</p>
+                      <p className="text-xs text-slate-400">Язык: {m.lang}</p>
+                    </div>
+                    <div className="w-36">
+                      <Progress value={m.load} label={`Нагрузка ${m.load}%`} />
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </section>
 
-          <section aria-labelledby="disputes">
-            <h2 id="disputes" className="font-serif text-xl font-semibold text-primary">{a.disputesTitle}</h2>
-            <ul className="mt-3 space-y-3">
-              {disputes.map((d, i) => (
-                <li key={d.id} className="rounded-md border border-border p-4">
-                  <div className="flex items-center justify-between gap-3">
-                    <p className="font-medium">{d.id}</p>
-                    <span className="text-xs text-terracotta">{formatMessage(a.agreement, { n: d.agreement })}</span>
-                  </div>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    {a.projects[d.project]} · {a.reasons[i]}
-                  </p>
+            <section className="rounded-xl border border-white/10 bg-white/5 p-5">
+              <div className="mb-4 flex items-center gap-2">
+                <AlertTriangle className="size-5 text-amber-400" />
+                <h2 className="text-lg font-semibold text-white">Споры / низкое согласие</h2>
+              </div>
+              <ul className="space-y-3">
+                {disputes.map((d) => (
+                  <li
+                    key={d.id}
+                    className="rounded-lg border border-white/10 bg-black/20 px-3 py-3"
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <p className="font-medium text-white">{d.id}</p>
+                      <span className="text-xs text-amber-300">согласие {d.agreement}%</span>
+                    </div>
+                    <p className="mt-1 text-xs text-slate-400">Проект: {d.project}</p>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          </div>
+
+          <section className="mt-6 rounded-xl border border-white/10 bg-white/5 p-5">
+            <div className="mb-4 flex items-center gap-2">
+              <Shield className="size-5 text-sky-400" />
+              <h2 className="text-lg font-semibold text-white">Журнал аудита (демо)</h2>
+            </div>
+            <ul className="divide-y divide-white/10 text-sm">
+              {[
+                { t: auditTimes[0], who: 'Система', action: 'Загружены демо-задания', target: `${taskStats.total} шт.` },
+                { t: auditTimes[1], who: 'Админ', action: 'Просмотр панели', target: '/admin' },
+                { t: auditTimes[2], who: '—', action: 'Экспертная проверка эталонов', target: 'pending' },
+                { t: auditTimes[3], who: '—', action: 'Реальные платежи', target: 'отсутствуют' },
+              ].map((row, i) => (
+                <li key={i} className="flex flex-wrap items-baseline gap-x-4 gap-y-1 py-3">
+                  <span className="w-10 tabular-nums text-slate-500">{row.t}</span>
+                  <span className="font-medium text-slate-200">{row.who}</span>
+                  <span className="text-slate-300">{row.action}</span>
+                  <span className="text-slate-500">{row.target}</span>
                 </li>
               ))}
             </ul>
+            <p className="mt-3 text-xs text-slate-500">
+              Админ-панель визуально и по смыслу отделена от кабинета клиента. Данные — демо.
+            </p>
           </section>
-        </div>
 
-        <section className="mt-8" aria-labelledby="audit">
-          <h2 id="audit" className="font-serif text-xl font-semibold text-primary">{a.auditTitle}</h2>
-          <ul className="mt-3 divide-y divide-border rounded-md border border-border">
-            {a.audit.map((item, i) => (
-              <li key={auditTimes[i]} className="flex flex-wrap items-baseline gap-x-4 gap-y-1 px-4 py-3 text-sm">
-                <span className="w-12 tabular-nums text-muted-foreground">{auditTimes[i]}</span>
-                <span className="font-medium">{item.who}</span>
-                <span>{item.action}</span>
-                <span className="text-muted-foreground">{item.target}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link href="/client" className={cn(buttonVariants({ variant: 'outline' }), 'border-white/20 bg-transparent text-white hover:bg-white/10')}>
+              Открыть кабинет клиента
+            </Link>
+            <Link href="/login" className={cn(buttonVariants(), 'bg-sky-500 hover:bg-sky-400')}>
+              Войти под другой ролью
+            </Link>
+          </div>
+        </div>
       </main>
     </>
   )

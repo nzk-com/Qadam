@@ -2,17 +2,23 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { Logo } from '@/components/logo'
 import { Button } from '@/components/ui/button'
 import { saveDemoUser, roleHome, type DemoRole } from '@/lib/demo-auth'
 
+const roles: { id: DemoRole; label: string }[] = [
+  { id: 'annotator', label: 'Аннотатор' },
+  { id: 'client', label: 'Клиент' },
+  { id: 'qa', label: 'QA' },
+  { id: 'admin', label: 'Администратор' },
+]
+
 export default function RegisterPage() {
-  const router = useRouter()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [role, setRole] = useState<DemoRole>('annotator')
   const [error, setError] = useState('')
+  const [busy, setBusy] = useState(false)
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -20,18 +26,19 @@ export default function RegisterPage() {
       setError('Заполните имя и email')
       return
     }
+    setBusy(true)
     saveDemoUser({ name: name.trim(), email: email.trim(), role })
-    router.push(roleHome(role))
+    window.location.href = roleHome(role)
   }
 
   return (
-    <div className="flex min-h-[calc(100vh-3.5rem)] items-center justify-center gradient-hero px-4 py-12">
+    <div className="flex min-h-screen items-center justify-center gradient-hero px-4 py-12">
       <div className="w-full max-w-md animate-scale-in rounded-2xl border border-border bg-white/95 p-8 soft-glow backdrop-blur">
-        <div className="mb-6 flex flex-col items-center gap-3 text-center">
+        <div className="mb-6 flex flex-col items-center gap-2 text-center">
           <Logo />
           <h1 className="text-xl font-semibold text-deep-blue">Регистрация</h1>
           <p className="text-xs text-muted-foreground">
-            Демонстрационная регистрация. Данные сохраняются только на этом устройстве.
+            Демо: данные только на этом устройстве. После регистрации откроется страница роли.
           </p>
         </div>
 
@@ -56,28 +63,27 @@ export default function RegisterPage() {
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium text-deep-blue">Роль в демо</label>
+            <label className="mb-1 block text-sm font-medium text-deep-blue">Роль</label>
             <select
               className="w-full rounded-lg border border-border bg-white px-3 py-2 text-sm"
               value={role}
               onChange={(e) => setRole(e.target.value as DemoRole)}
             >
-              <option value="annotator">Аннотатор</option>
-              <option value="client">Клиент</option>
-              <option value="qa">QA</option>
-              <option value="admin">Администратор</option>
+              {roles.map((r) => (
+                <option key={r.id} value={r.id}>
+                  {r.label}
+                </option>
+              ))}
             </select>
           </div>
-
           {error && <p className="text-sm text-destructive">{error}</p>}
-
-          <Button type="submit" className="w-full">
-            Создать демо-аккаунт
+          <Button type="submit" className="w-full" disabled={busy}>
+            {busy ? 'Вход…' : 'Создать и войти'}
           </Button>
         </form>
 
         <p className="mt-4 text-center text-sm text-muted-foreground">
-          Уже есть аккаунт?{' '}
+          Уже есть демо-аккаунт?{' '}
           <Link href="/login" className="font-medium text-primary hover:underline">
             Войти
           </Link>

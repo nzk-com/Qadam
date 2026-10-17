@@ -24,7 +24,7 @@ export async function Services() {
           {services.map((item, i) => {
             const info = s.items[item.id]
             return (
-              <article key={item.id} className="flex flex-col bg-card p-6">
+              <article key={item.id} className="flex flex-col bg-card p-6 transition-all duration-300 hover:bg-soft-blue/40 hover:shadow-sm">
                 <span className="font-serif text-sm tabular-nums text-terracotta">0{i + 1}</span>
                 <h3 className="mt-2 font-serif text-xl font-semibold text-primary">{info.title}</h3>
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{info.text}</p>

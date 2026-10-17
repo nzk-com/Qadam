@@ -265,9 +265,9 @@ export function Workspace() {
           </Button>
         </div>
       ) : (
-        <div className="mx-auto grid w-full max-w-[1400px] flex-1 grid-cols-1 gap-4 p-4 lg:grid-cols-[240px_1fr_280px] md:px-6">
+        <div className="mx-auto grid w-full max-w-[1400px] flex-1 animate-fade-in grid-cols-1 gap-4 p-4 lg:grid-cols-[240px_1fr_280px] md:px-6">
           {/* Left: instructions */}
-          <aside className="space-y-4 rounded-xl border border-border bg-white p-4 text-sm">
+          <aside className="space-y-4 rounded-xl border border-border bg-white p-4 text-sm shadow-sm">
             <div>
               <h3 className="mb-1 font-semibold text-deep-blue">Инструкция</h3>
               <p className="text-muted-foreground text-xs leading-relaxed">
@@ -309,10 +309,10 @@ export function Workspace() {
                     type="button"
                     onClick={() => setChoice(ans.id)}
                     className={cn(
-                      'rounded-xl border p-4 text-left transition-all',
+                      'rounded-xl border p-4 text-left transition-all duration-200 card-hover',
                       choice === ans.id
-                        ? 'border-primary bg-soft-blue ring-2 ring-primary/30'
-                        : 'border-border bg-white hover:border-deco-blue'
+                        ? 'border-primary bg-soft-blue ring-2 ring-primary/30 shadow-md'
+                        : 'border-border bg-white hover:border-primary/40'
                     )}
                   >
                     <span className="mb-2 inline-flex size-7 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">

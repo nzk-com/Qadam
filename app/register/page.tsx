@@ -25,8 +25,8 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="flex min-h-[calc(100vh-3.5rem)] items-center justify-center bg-secondary/50 px-4 py-12">
-      <div className="w-full max-w-md rounded-2xl border border-border bg-white p-8 shadow-sm">
+    <div className="flex min-h-[calc(100vh-3.5rem)] items-center justify-center gradient-hero px-4 py-12">
+      <div className="w-full max-w-md animate-scale-in rounded-2xl border border-border bg-white/95 p-8 soft-glow backdrop-blur">
         <div className="mb-6 flex flex-col items-center gap-3 text-center">
           <Logo />
           <h1 className="text-xl font-semibold text-deep-blue">Регистрация</h1>

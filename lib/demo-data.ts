@@ -654,37 +654,20 @@ export const corpora = [
 ] as const
 
 export const clientProjects = [
-  {
-    id: 'demo-bank',
-    name: 'Демо-проект: банковские ответы',
-    language: 'kk',
-    type: 'preference',
-    status: 'demo',
-    total: 40,
-    completed: 12,
-    comment: 'Демонстрационные данные. Не реальный клиентский проект.',
-  },
-  {
-    id: 'demo-gov',
-    name: 'Демо-проект: red-teaming',
-    language: 'ky',
-    type: 'red-teaming',
-    status: 'demo',
-    total: 20,
-    completed: 5,
-    comment: 'Демонстрационные данные.',
-  },
+  { id: 'bank', type: 'rlhf', progress: 30, done: 12, total: 40, unit: 'tasks', quality: 0, status: 'inProgress' },
+  { id: 'gov', type: 'redteam', progress: 25, done: 5, total: 20, unit: 'tasks', quality: 0, status: 'inProgress' },
+  { id: 'app', type: 'localization', progress: 100, done: 10, total: 10, unit: 'screens', quality: 0, status: 'delivered' },
 ] as const
 
 export const academyModules = [
-  { id: 'compare', titleKey: 'compare', lessons: 4 },
-  { id: 'kk-natural', titleKey: 'kkNatural', lessons: 5 },
-  { id: 'ky-natural', titleKey: 'kyNatural', lessons: 4 },
-  { id: 'codeswitch', titleKey: 'codeswitch', lessons: 3 },
-  { id: 'safety', titleKey: 'safety', lessons: 4 },
-  { id: 'privacy', titleKey: 'privacy', lessons: 3 },
-  { id: 'practice', titleKey: 'practice', lessons: 10 },
-  { id: 'assessment', titleKey: 'assessment', lessons: 1 },
+  { id: 'compare', titleKey: 'compare', lessons: 4, done: 2 },
+  { id: 'kk-natural', titleKey: 'kkNatural', lessons: 5, done: 1 },
+  { id: 'ky-natural', titleKey: 'kyNatural', lessons: 4, done: 0 },
+  { id: 'codeswitch', titleKey: 'codeswitch', lessons: 3, done: 0 },
+  { id: 'safety', titleKey: 'safety', lessons: 4, done: 0 },
+  { id: 'privacy', titleKey: 'privacy', lessons: 3, done: 0 },
+  { id: 'practice', titleKey: 'practice', lessons: 10, done: 0 },
+  { id: 'assessment', titleKey: 'assessment', lessons: 1, done: 0 },
 ]
 
 export const heroDemo = {
@@ -702,3 +685,71 @@ export const heroDemo = {
   ],
   note: 'Демо. Проценты качества не подтверждены.',
 }
+
+// ---------- Compatibility exports for existing pages (demo only) ----------
+
+export const criteriaIds = [
+  'relevance',
+  'language-naturalness',
+  'clarity',
+  'safety',
+  'cultural-appropriateness',
+] as const
+
+export type CriterionId = (typeof criteriaIds)[number]
+
+export const tagIds = allTags
+// TagId already exported above
+
+/** @deprecated Use demoTasks instead. Kept for old /rlhf page. */
+export const rlhfTask = {
+  id: 'kk-003',
+  total: demoTasks.length,
+  done: 0,
+  prompt: 'Банк картамды жоғалттым. Не істеуім керек?',
+  responses: [
+    {
+      id: 'A',
+      text: 'Банктің мобильді қосымшасы арқылы картаны дереу бұғаттаңыз, содан кейін банкке хабарласыңыз.',
+    },
+    {
+      id: 'B',
+      text: 'Ештеңе істемеңіз, карта өзі қайтып келеді.',
+    },
+    {
+      id: 'C',
+      text: 'Карта нөмірін әлеуметтік желіге жариялаңыз.',
+    },
+  ],
+}
+
+export const levels = [
+  { name: 'Trainee', active: false, reached: true },
+  { name: 'Annotator', active: true, reached: true },
+  { name: 'Senior', active: false, reached: false },
+  { name: 'QA Linguist', active: false, reached: false },
+]
+
+export const adminStats = [
+  { value: taskStats.total, kind: 'int' as const },
+  { value: taskStats.byLanguage.kk, kind: 'int' as const },
+  { value: 0, kind: 'int' as const },
+  { value: 0, kind: 'pct' as const },
+]
+
+export const team = [
+  { role: 'Демо-QA', lang: 'KZ', load: 0, accuracy: 0 },
+  { role: 'Демо-аннотатор 1', lang: 'KZ', load: 0, accuracy: 0 },
+  { role: 'Демо-аннотатор 2', lang: 'KG', load: 0, accuracy: 0 },
+]
+
+export const disputes = [
+  { id: 'kk-018', project: 'demo', agreement: 0 },
+  { id: 'ky-006', project: 'demo', agreement: 0 },
+] as const
+
+export const auditTimes = ['—', '—', '—', '—']
+
+export const invoices = [
+  { id: 'DEMO-001', date: '2026-10-01', amount: 0, status: 'draft' as const },
+] as const

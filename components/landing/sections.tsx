@@ -17,22 +17,25 @@ export async function Services() {
   const { t } = await getDictionary()
   const s = t.services
   return (
-    <section id="services" className="scroll-mt-28 border-b border-white/30 lg:scroll-mt-20">
-      <div className="mx-auto max-w-7xl px-4 py-16 md:px-6 md:py-20">
-        <SectionHead index="02" eyebrow={s.eyebrow} title={s.title} text={s.text} />
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <section id="services" className="scroll-mt-28 lg:scroll-mt-20">
+      <div className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-20">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-deep-blue/50">{s.eyebrow}</p>
+          <h2 className="mt-3 font-serif text-3xl font-medium tracking-tight text-deep-blue md:text-4xl">{s.title}</h2>
+          <p className="mt-4 text-deep-blue/60">{s.text}</p>
+        </div>
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((item, i) => {
             const info = s.items[item.id]
             return (
               <article
                 key={item.id}
-                className="glass flex flex-col rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg animate-fade-up"
-                style={{ animationDelay: `${i * 0.08}s` }}
+                className="flex flex-col rounded-3xl border border-white/50 bg-white/40 p-7 shadow-[0_12px_40px_rgba(15,40,80,0.06)] backdrop-blur-xl transition duration-300 hover:-translate-y-1.5 hover:bg-white/55"
               >
-                <span className="font-serif text-sm tabular-nums text-primary/70">0{i + 1}</span>
-                <h3 className="mt-2 font-serif text-xl font-semibold text-deep-blue">{info.title}</h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{info.text}</p>
-                <p className="mt-5 border-t border-white/40 pt-4 text-sm font-medium text-deep-blue">
+                <span className="font-serif text-3xl font-medium tabular-nums text-deep-blue/25">0{i + 1}</span>
+                <h3 className="mt-3 font-serif text-xl font-medium text-deep-blue">{info.title}</h3>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-deep-blue/60">{info.text}</p>
+                <p className="mt-6 border-t border-white/40 pt-4 text-sm font-medium text-deep-blue">
                   {formatMessage(s.priceLine, { price: `$${item.price}`, unit: info.unit })}
                 </p>
               </article>

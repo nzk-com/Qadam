@@ -619,11 +619,11 @@ export const glossary = [
 ] as const
 
 export const services = [
-  { id: 'preference', status: 'demo' as const },
-  { id: 'redteam', status: 'demo' as const },
-  { id: 'localization', status: 'demo' as const },
-  { id: 'custom', status: 'on-request' as const },
-  { id: 'transcription', status: 'planned' as const },
+  { id: 'rlhf', price: 1.2, status: 'available' as const },
+  { id: 'redteam', price: 2.5, status: 'available' as const },
+  { id: 'localization', price: 25, status: 'available' as const },
+  { id: 'corpora', price: 40, status: 'on-request' as const },
+  { id: 'transcription', price: 18, status: 'production' as const },
 ] as const
 
 export const corpora = [
@@ -632,7 +632,7 @@ export const corpora = [
     lang: 'kk' as const,
     type: 'dialogs',
     description: 'Демонстрационный пример банковских диалогов.',
-    status: 'demo' as const,
+    status: 'available' as const,
     availability: 'Демонстрационный пример. Создание под заказ.',
   },
   {
@@ -640,7 +640,7 @@ export const corpora = [
     lang: 'kk-ru' as const,
     type: 'utterances',
     description: 'Пример смешанных казахско-русских реплик.',
-    status: 'demo' as const,
+    status: 'available' as const,
     availability: 'Демонстрационный пример.',
   },
   {
@@ -648,7 +648,7 @@ export const corpora = [
     lang: 'ky' as const,
     type: 'qa',
     description: 'Планируемый корпус бытовых вопросов-ответов на кыргызском.',
-    status: 'planned' as const,
+    status: 'production' as const,
     availability: 'Планируется.',
   },
 ] as const
@@ -688,6 +688,13 @@ export const heroDemo = {
     best: 'A',
     tags: ['unsafe', 'incomplete-answer'] as TagId[],
   },
+  tags: [
+    'grammar',
+    'unnatural-language',
+    'unsafe',
+    'incomplete-answer',
+    'cultural-mismatch',
+  ] as TagId[],
 }
 
 // ---------- Compatibility exports for existing pages (demo only) ----------

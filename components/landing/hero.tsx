@@ -12,14 +12,14 @@ export async function SiteHeader() {
     { href: '#services', label: t.nav.services },
     { href: '#quality', label: t.nav.quality },
     { href: '#corpora', label: t.nav.corpora },
-    { href: '#calculator', label: t.nav.calculator },
+    { href: '#workspace-link', label: 'Демо' },
     { href: '#faq', label: t.nav.faq },
   ]
   return (
-    <header className="sticky top-0 z-40 border-b border-white/30 bg-white/40 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 md:px-6">
-        <Logo />
-        <nav aria-label={t.nav.main} className="hidden items-center gap-7 text-sm text-deep-blue/70 lg:flex">
+    <header className="fixed inset-x-0 top-0 z-50">
+      <div className="mx-auto mt-4 flex h-14 max-w-6xl items-center justify-between gap-4 rounded-full border border-white/40 bg-white/35 px-5 shadow-[0_8px_32px_rgba(15,40,80,0.08)] backdrop-blur-2xl md:px-7">
+        <Logo compact />
+        <nav aria-label={t.nav.main} className="hidden items-center gap-8 text-[13px] font-medium text-deep-blue/75 md:flex">
           {links.map((l) => (
             <a key={l.href} href={l.href} className="transition hover:text-deep-blue">
               {l.label}
@@ -29,29 +29,18 @@ export async function SiteHeader() {
         <div className="flex items-center gap-2">
           <Link
             href="/login"
-            className={cn(buttonVariants({ variant: 'ghost' }), 'hidden text-deep-blue sm:inline-flex')}
+            className="hidden rounded-full px-3 py-1.5 text-[13px] font-medium text-deep-blue/80 transition hover:bg-white/50 sm:inline-flex"
           >
             {t.nav.login}
           </Link>
-          <PilotButton size="md" arrow={false} />
-        </div>
-      </div>
-      <nav aria-label={t.nav.main} className="border-t border-white/30 lg:hidden">
-        <div className="mx-auto flex max-w-7xl items-center gap-1 overflow-x-auto px-4 md:px-6">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="whitespace-nowrap px-3 py-2.5 text-sm text-deep-blue/70 hover:text-deep-blue"
-            >
-              {l.label}
-            </a>
-          ))}
-          <Link href="/login" className="whitespace-nowrap px-3 py-2.5 text-sm text-deep-blue/70 sm:hidden">
-            {t.nav.login}
+          <Link
+            href="/workspace"
+            className="rounded-full bg-deep-blue px-4 py-2 text-[13px] font-medium text-white shadow-md transition hover:bg-primary"
+          >
+            Открыть демо
           </Link>
         </div>
-      </nav>
+      </div>
     </header>
   )
 }
@@ -60,45 +49,60 @@ export async function Hero() {
   const { t } = await getDictionary()
   const h = t.hero
   return (
-    <section className="relative overflow-hidden mesh-hero">
-      {/* floating orbs */}
-      <div className="pointer-events-none absolute -left-24 top-20 size-72 rounded-full bg-white/30 blur-3xl animate-float-slow" />
-      <div className="pointer-events-none absolute right-0 top-10 size-96 rounded-full bg-sky-200/40 blur-3xl animate-float" />
-      <div className="pointer-events-none absolute bottom-0 left-1/3 size-64 rounded-full bg-white/25 blur-3xl animate-pulse-soft" />
+    <section className="relative min-h-[100svh] overflow-hidden">
+      {/* Atmospheric layers like the reference dunes/mist */}
+      <div className="absolute inset-0 bg-[linear-gradient(165deg,#6a9bb8_0%,#8fb6ce_22%,#b7d2e4_48%,#d7e8f3_72%,#eef5fa_100%)]" />
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -left-[10%] top-[15%] h-[55%] w-[55%] rounded-full bg-white/25 blur-[100px] animate-float-slow" />
+        <div className="absolute right-[-15%] top-[-5%] h-[60%] w-[55%] rounded-full bg-[#9ec4dc]/45 blur-[110px] animate-float" />
+        <div className="absolute bottom-[-10%] left-[20%] h-[45%] w-[70%] rounded-[100%] bg-[#c5dced]/50 blur-[90px]" />
+        {/* soft dune curves */}
+        <svg className="absolute bottom-0 left-0 w-full opacity-40" viewBox="0 0 1440 320" preserveAspectRatio="none" aria-hidden>
+          <path fill="rgba(255,255,255,0.35)" d="M0,224L80,208C160,192,320,160,480,165.3C640,171,800,213,960,224C1120,235,1280,213,1360,202.7L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z" />
+        </svg>
+        <svg className="absolute bottom-0 left-0 w-full opacity-50" viewBox="0 0 1440 280" preserveAspectRatio="none" aria-hidden>
+          <path fill="rgba(238,245,250,0.85)" d="M0,160L120,176C240,192,480,224,720,218.7C960,213,1200,171,1320,149.3L1440,128L1440,280L1320,280C1200,280,960,280,720,280C480,280,240,280,120,280L0,280Z" />
+        </svg>
+      </div>
 
-      <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 md:px-6 md:py-24 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16">
-        <div className="animate-fade-up">
-          <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/50 bg-white/40 px-3.5 py-1.5 text-xs font-medium text-deep-blue shadow-sm backdrop-blur">
-            <span className="size-1.5 animate-pulse rounded-full bg-primary" />
-            Қазақша · Кыргызча · KK/RU
-          </p>
-          <h1 className="font-serif text-[2.75rem] font-medium leading-[1.08] tracking-tight text-deep-blue md:text-6xl lg:text-[3.75rem]">
-            {h.title}
-          </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-deep-blue/70">{h.text}</p>
-          <div className="mt-9 flex flex-wrap gap-3">
-            <PilotButton size="xl" />
-            <a
-              href="#corpora"
-              className={cn(
-                buttonVariants({ variant: 'outline' }),
-                'h-12 border-white/60 bg-white/50 px-6 text-base text-deep-blue backdrop-blur hover:bg-white/80',
-              )}
+      <div className="relative mx-auto flex max-w-6xl flex-col items-center px-4 pb-24 pt-36 text-center md:px-6 md:pt-44">
+        <p className="animate-fade-up mb-5 text-[11px] font-semibold uppercase tracking-[0.22em] text-deep-blue/55">
+          AI data · Turkic languages · Human evaluation
+        </p>
+        <h1 className="animate-fade-up stagger-1 max-w-4xl font-serif text-[3.25rem] font-medium leading-[1.05] tracking-tight text-deep-blue md:text-7xl lg:text-[5rem]">
+          <span className="block text-deep-blue/90">{h.title}</span>
+        </h1>
+        <p className="animate-fade-up stagger-2 mx-auto mt-7 max-w-2xl text-base leading-relaxed text-deep-blue/65 md:text-lg">
+          {h.text}
+        </p>
+
+        <div className="animate-fade-up stagger-3 mt-8 flex flex-wrap items-center justify-center gap-2">
+          {['Қазақша', 'Кыргызча', 'KK / RU', 'Preference', 'Red-team'].map((tag) => (
+            <span
+              key={tag}
+              className="rounded-full border border-white/50 bg-white/35 px-3.5 py-1.5 text-xs font-medium text-deep-blue/80 backdrop-blur-md"
             >
-              {h.ctaSecondary}
-            </a>
-            <a
-              href="/workspace"
-              className={cn(buttonVariants({ variant: 'ghost' }), 'h-12 px-4 text-base text-deep-blue/80')}
-            >
-              Открыть демо →
-            </a>
-          </div>
+              {tag}
+            </span>
+          ))}
         </div>
 
-        <div className="animate-fade-up stagger-3 relative">
-          <div className="absolute -inset-4 rounded-3xl bg-white/20 blur-2xl" />
-          <div className="relative glass-strong rounded-3xl p-1">
+        <div className="animate-fade-up stagger-4 mt-10 flex flex-wrap items-center justify-center gap-3">
+          <PilotButton size="xl" />
+          <Link
+            href="/workspace"
+            className={cn(
+              buttonVariants({ variant: 'outline' }),
+              'h-12 rounded-full border-white/60 bg-white/40 px-7 text-base text-deep-blue backdrop-blur hover:bg-white/70',
+            )}
+          >
+            Смотреть демо
+          </Link>
+        </div>
+
+        <div id="workspace-link" className="animate-fade-up stagger-5 relative mt-16 w-full max-w-3xl">
+          <div className="absolute -inset-6 rounded-[2rem] bg-white/20 blur-2xl" />
+          <div className="relative overflow-hidden rounded-[1.75rem] border border-white/50 bg-white/45 p-1 shadow-[0_24px_80px_rgba(15,40,80,0.12)] backdrop-blur-xl">
             <HeroDemo />
           </div>
         </div>

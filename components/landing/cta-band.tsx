@@ -8,9 +8,9 @@ export async function CtaBand({ variant }: { variant: 'mid' | 'final' }) {
   return (
     <section
       aria-labelledby={headingId}
-      className="border-y border-white/40 bg-white/35 backdrop-blur-md"
+      className="relative overflow-hidden border-y border-white/30 bg-gradient-to-b from-[#b7d2e4]/40 to-[#eef5fa]"
     >
-      <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-10 md:flex-row md:items-center md:justify-between md:gap-10 md:px-6 md:py-12">
+      <div className="relative mx-auto flex max-w-3xl flex-col items-center gap-6 px-4 py-16 text-center md:px-6 md:py-20">
         <div className="max-w-2xl">
           <h2
             id={headingId}
@@ -20,7 +20,7 @@ export async function CtaBand({ variant }: { variant: 'mid' | 'final' }) {
           </h2>
           <p className="mt-2 leading-relaxed text-muted-foreground text-pretty">{c.text}</p>
         </div>
-        <div className="shrink-0">
+        <div className="shrink-0 pt-2">
           <PilotButton size="xl" />
         </div>
       </div>

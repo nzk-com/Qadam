@@ -315,12 +315,7 @@
 }
 
 body {
-  background:
-    radial-gradient(ellipse 100% 80% at 50% -20%, #c5dff0 0%, transparent 55%),
-    radial-gradient(ellipse 60% 50% at 100% 50%, #d0e4f2 0%, transparent 50%),
-    radial-gradient(ellipse 50% 40% at 0% 80%, #e2eef7 0%, transparent 45%),
-    #eef5fa;
-  background-attachment: fixed;
+  background: #eef5fa;
 }
 
 @layer utilities {

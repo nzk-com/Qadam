@@ -54,11 +54,9 @@ export function Logo({ className, compact = false }: { className?: string; compa
       aria-label={t.nav?.home ?? 'Dala AI'}
     >
       <LogoMark size={compact ? 28 : 36} />
-      {!compact && (
-        <span className="font-semibold text-lg tracking-tight text-deep-blue tracking-tight">
-          Dala <span className="font-normal text-primary/80">AI</span>
-        </span>
-      )}
+      <span className={cn('font-semibold tracking-tight text-deep-blue', compact ? 'text-sm' : 'text-lg')}>
+        Dala <span className="font-normal text-primary/80">AI</span>
+      </span>
     </Link>
   )
 }

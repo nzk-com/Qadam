@@ -47,48 +47,54 @@
 
 :root {
   color-scheme: light;
-  --background: #ffffff;
-  --foreground: #1a1a1a;
-  --card: #ffffff;
-  --card-foreground: #1a1a1a;
-  --popover: #ffffff;
-  --popover-foreground: #1a1a1a;
-  --primary: #353524;
-  --primary-foreground: #ffffff;
-  --secondary: #f7f6f2;
-  --secondary-foreground: #353524;
-  --muted: #f7f6f2;
-  --muted-foreground: #6e6a5e;
-  --accent: #edebe4;
-  --accent-foreground: #1a1a1a;
-  --destructive: #b3261e;
-  --border: #e4e1d6;
-  --input: #d9d5c6;
-  --ring: #a95332;
-  --chart-1: #353524;
-  --chart-2: #a95332;
-  --chart-3: #bab5a0;
-  --chart-4: #3e7c4f;
-  --chart-5: #6e6a5e;
-  --radius: 0.375rem;
-  --sidebar: #f7f6f2;
-  --sidebar-foreground: #1a1a1a;
-  --sidebar-primary: #353524;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #edebe4;
-  --sidebar-accent-foreground: #1a1a1a;
-  --sidebar-border: #e4e1d6;
-  --sidebar-ring: #a95332;
-  --terracotta: #a95332;
-  --sand: #bab5a0;
-  --success: #3e7c4f;
+  /* Dala AI blue palette */
+  --background: #FFFFFF;
+  --foreground: #172B45;
+  --card: #FFFFFF;
+  --card-foreground: #172B45;
+  --popover: #FFFFFF;
+  --popover-foreground: #172B45;
+  --primary: #2563EB;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F5FAFF;
+  --secondary-foreground: #153B70;
+  --muted: #F5FAFF;
+  --muted-foreground: #526781;
+  --accent: #DCEEFF;
+  --accent-foreground: #153B70;
+  --destructive: #DC2626;
+  --border: #D8E6F3;
+  --input: #D8E6F3;
+  --ring: #2563EB;
+  --chart-1: #2563EB;
+  --chart-2: #153B70;
+  --chart-3: #A9D5F5;
+  --chart-4: #3B82F6;
+  --chart-5: #526781;
+  --radius: 0.5rem;
+  --sidebar: #F5FAFF;
+  --sidebar-foreground: #172B45;
+  --sidebar-primary: #2563EB;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #DCEEFF;
+  --sidebar-accent-foreground: #153B70;
+  --sidebar-border: #D8E6F3;
+  --sidebar-ring: #2563EB;
+  /* Custom tokens */
+  --soft-blue: #DCEEFF;
+  --deco-blue: #A9D5F5;
+  --deep-blue: #153B70;
+  --hover-primary: #1D4ED8;
+  --success: #16A34A;
 }
 
 @theme inline {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-lora), ui-serif, Georgia, serif;
-  --color-terracotta: var(--terracotta);
-  --color-sand: var(--sand);
+  --color-soft-blue: var(--soft-blue);
+  --color-deco-blue: var(--deco-blue);
+  --color-deep-blue: var(--deep-blue);
+  --color-hover-primary: var(--hover-primary);
   --color-success: var(--success);
 }
 

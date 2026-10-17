@@ -1,38 +1,64 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { useI18n } from '@/components/i18n-provider'
 import { cn } from '@/lib/utils'
 
-export function LogoMark({ className }: { className?: string }) {
+/** Logo mark — uses tiger image when available, otherwise a blue placeholder SVG */
+export function LogoMark({ className, size = 36 }: { className?: string; size?: number }) {
   return (
-    <svg
-      viewBox="0 0 32 32"
-      className={cn('size-8', className)}
-      aria-hidden="true"
-      fill="none"
-    >
-      <rect width="32" height="32" rx="5" fill="#353524" />
-      <path
-        d="M10 8h5.5a8 8 0 0 1 0 16H10V8Z"
-        stroke="#EDEBE4"
-        strokeWidth="2.4"
-        strokeLinejoin="round"
+    <span className={cn('relative inline-flex shrink-0', className)} style={{ width: size, height: size }}>
+      {/* Prefer the attached blue tiger illustration */}
+      <Image
+        src="/images/dala-tiger.png"
+        alt="Dala AI — логотип с голубым тигром"
+        width={size}
+        height={size}
+        className="object-contain"
+        onError={(e) => {
+          // Fallback if image not yet uploaded
+          const target = e.currentTarget
+          target.style.display = 'none'
+          const fallback = target.nextElementSibling as HTMLElement | null
+          if (fallback) fallback.style.display = 'block'
+        }}
       />
-      <path d="M6 20.5h20" stroke="#BAB5A0" strokeWidth="1.4" strokeLinecap="round" />
-      <circle cx="23.5" cy="9" r="2.4" fill="#A95332" />
-    </svg>
+      <svg
+        viewBox="0 0 64 64"
+        className="hidden size-full"
+        aria-hidden="true"
+        fill="none"
+      >
+        <circle cx="32" cy="32" r="30" fill="#DCEEFF" />
+        <path
+          d="M20 28c0-6 4-12 12-12s12 6 12 12v4c0 8-5 14-12 14S20 40 20 32v-4z"
+          fill="#A9D5F5"
+        />
+        <ellipse cx="26" cy="30" rx="3" ry="4" fill="#153B70" />
+        <ellipse cx="38" cy="30" rx="3" ry="4" fill="#153B70" />
+        <path d="M28 38c2 2 6 2 8 0" stroke="#153B70" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M32 18l2 4h-4l2-4z" fill="#2563EB" />
+        <path d="M24 22l-3-4M40 22l3-4" stroke="#153B70" strokeWidth="1.5" strokeLinecap="round" />
+      </svg>
+    </span>
   )
 }
 
-export function Logo({ className }: { className?: string }) {
+export function Logo({ className, compact = false }: { className?: string; compact?: boolean }) {
   const { t } = useI18n()
   return (
-    <Link href="/" className={cn('flex items-center gap-2.5', className)} aria-label={t.nav.home}>
-      <LogoMark />
-      <span className="font-serif text-xl font-semibold tracking-tight text-primary">
-        Dala <span className="text-terracotta">AI</span>
-      </span>
+    <Link
+      href="/"
+      className={cn('flex items-center gap-2.5', className)}
+      aria-label={t.nav?.home ?? 'Dala AI'}
+    >
+      <LogoMark size={compact ? 28 : 36} />
+      {!compact && (
+        <span className="font-semibold text-lg tracking-tight text-deep-blue">
+          Dala <span className="text-primary">AI</span>
+        </span>
+      )}
     </Link>
   )
 }

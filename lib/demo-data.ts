@@ -684,6 +684,10 @@ export const heroDemo = {
     },
   ],
   note: 'Демо. Проценты качества не подтверждены.',
+  expert: {
+    best: 'A',
+    tags: ['unsafe', 'incomplete-answer'] as TagId[],
+  },
 }
 
 // ---------- Compatibility exports for existing pages (demo only) ----------

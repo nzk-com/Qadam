@@ -30,9 +30,9 @@ export function HeroDemo() {
   }
 
   return (
-    <div className="min-w-0 rounded-md border border-border bg-background shadow-sm">
+    <div className="min-w-0 overflow-hidden rounded-2xl bg-white/80 shadow-lg backdrop-blur">
       <div className="flex items-center justify-between gap-3 border-b border-border px-5 py-3">
-        <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-terracotta">
+        <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-primary">
           <span className="size-1.5 rounded-full bg-terracotta" aria-hidden="true" />
           {d.label}
         </p>
@@ -58,7 +58,7 @@ export function HeroDemo() {
                   key={r.id}
                   className={cn(
                     'flex cursor-pointer flex-col gap-2 rounded-md border border-border bg-background p-4 text-sm transition-colors hover:bg-secondary has-[:focus-visible]:ring-3 has-[:focus-visible]:ring-ring/40',
-                    best === r.id && 'border-terracotta bg-secondary ring-1 ring-terracotta',
+                    best === r.id && 'border-primary bg-soft-blue/50 ring-1 ring-primary',
                     isExpert && 'border-success ring-1 ring-success',
                     checked && 'cursor-default',
                   )}
@@ -73,7 +73,7 @@ export function HeroDemo() {
                       value={r.id}
                       checked={best === r.id}
                       onChange={() => setBest(r.id)}
-                      className="size-4 accent-terracotta"
+                      className="size-4 accent-primary"
                     />
                   </span>
                   <span lang="kk" className="leading-relaxed">
@@ -93,7 +93,7 @@ export function HeroDemo() {
                 key={id}
                 className={cn(
                   'cursor-pointer rounded-sm border border-border px-2.5 py-1 text-xs transition-colors hover:bg-secondary has-[:focus-visible]:ring-3 has-[:focus-visible]:ring-ring/40',
-                  flags.includes(id) && 'border-terracotta bg-terracotta/10 text-terracotta',
+                  flags.includes(id) && 'border-terracotta bg-terracotta/10 text-primary',
                   checked && 'cursor-default',
                 )}
               >
@@ -120,7 +120,7 @@ export function HeroDemo() {
             {correct ? (
               <CircleCheck className="mt-0.5 size-5 shrink-0 text-success" aria-hidden="true" />
             ) : (
-              <CircleAlert className="mt-0.5 size-5 shrink-0 text-terracotta" aria-hidden="true" />
+              <CircleAlert className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden="true" />
             )}
             <div>
               <p className="font-medium">{correct ? d.correctTitle : d.wrongTitle}</p>
@@ -135,7 +135,7 @@ export function HeroDemo() {
         <div className="min-w-0">
           {!checked && !best && <p className="text-xs text-muted-foreground">{d.hint}</p>}
           {(checked || best) && (
-            <Link href="/rlhf" className="inline-flex items-center gap-1.5 text-sm text-terracotta hover:underline">
+            <Link href="/rlhf" className="inline-flex items-center gap-1.5 text-sm text-primary hover:underline">
               {d.open}
               <ArrowRight className="size-4" />
             </Link>

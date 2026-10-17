@@ -8,15 +8,15 @@ export async function Audience() {
   const { t } = await getDictionary()
   const a = t.audience
   return (
-    <section id="audience" className="scroll-mt-28 border-b border-border lg:scroll-mt-20">
+    <section id="audience" className="scroll-mt-28 border-b border-white/30 lg:scroll-mt-20">
       <div className="mx-auto max-w-7xl px-4 py-16 md:px-6 md:py-20">
         <SectionHead index="01" eyebrow={a.eyebrow} title={a.title} text={a.text} />
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {a.items.map((item, i) => {
             const Icon = icons[i]
             return (
-              <article key={item.title} className="flex flex-col rounded-md border border-border bg-card p-6">
-                <span className="flex size-10 items-center justify-center rounded-md bg-accent text-primary">
+              <article key={item.title} className="glass flex flex-col rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg animate-fade-up">
+                <span className="flex size-11 items-center justify-center rounded-xl bg-white/70 text-primary shadow-sm">
                   <Icon className="size-5" aria-hidden="true" />
                 </span>
                 <h3 className="mt-5 font-serif text-xl font-semibold text-primary">{item.title}</h3>

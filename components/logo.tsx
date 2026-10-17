@@ -12,7 +12,7 @@ export function LogoMark({ className, size = 36 }: { className?: string; size?: 
       {/* Prefer the attached blue tiger illustration */}
       <Image
         src="/images/dala-tiger.png"
-        alt="Dala AI — логотип с голубым тигром"
+        alt="Dala AI"
         width={size}
         height={size}
         className="object-contain"
@@ -55,8 +55,8 @@ export function Logo({ className, compact = false }: { className?: string; compa
     >
       <LogoMark size={compact ? 28 : 36} />
       {!compact && (
-        <span className="font-semibold text-lg tracking-tight text-deep-blue">
-          Dala <span className="text-primary">AI</span>
+        <span className="font-semibold text-lg tracking-tight text-deep-blue tracking-tight">
+          Dala <span className="font-normal text-primary/80">AI</span>
         </span>
       )}
     </Link>

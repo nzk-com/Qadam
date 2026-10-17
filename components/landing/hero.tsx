@@ -16,12 +16,12 @@ export async function SiteHeader() {
     { href: '#faq', label: t.nav.faq },
   ]
   return (
-    <header className="sticky top-0 z-30 border-b border-border bg-background/90 backdrop-blur-md shadow-sm">
+    <header className="sticky top-0 z-40 border-b border-white/30 bg-white/40 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 md:px-6">
         <Logo />
-        <nav aria-label={t.nav.main} className="hidden items-center gap-6 text-sm text-muted-foreground lg:flex">
+        <nav aria-label={t.nav.main} className="hidden items-center gap-7 text-sm text-deep-blue/70 lg:flex">
           {links.map((l) => (
-            <a key={l.href} href={l.href} className="hover:text-foreground">
+            <a key={l.href} href={l.href} className="transition hover:text-deep-blue">
               {l.label}
             </a>
           ))}
@@ -29,25 +29,25 @@ export async function SiteHeader() {
         <div className="flex items-center gap-2">
           <Link
             href="/login"
-            className={cn(buttonVariants({ variant: 'ghost' }), 'hidden sm:inline-flex lg:hidden xl:inline-flex')}
+            className={cn(buttonVariants({ variant: 'ghost' }), 'hidden text-deep-blue sm:inline-flex')}
           >
             {t.nav.login}
           </Link>
           <PilotButton size="md" arrow={false} />
         </div>
       </div>
-      <nav aria-label={t.nav.main} className="border-t border-border lg:hidden">
+      <nav aria-label={t.nav.main} className="border-t border-white/30 lg:hidden">
         <div className="mx-auto flex max-w-7xl items-center gap-1 overflow-x-auto px-4 md:px-6">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="whitespace-nowrap px-3 py-2.5 text-sm text-muted-foreground hover:text-foreground"
+              className="whitespace-nowrap px-3 py-2.5 text-sm text-deep-blue/70 hover:text-deep-blue"
             >
               {l.label}
             </a>
           ))}
-          <Link href="/login" className="whitespace-nowrap px-3 py-2.5 text-sm text-muted-foreground hover:text-foreground sm:hidden">
+          <Link href="/login" className="whitespace-nowrap px-3 py-2.5 text-sm text-deep-blue/70 sm:hidden">
             {t.nav.login}
           </Link>
         </div>
@@ -60,37 +60,47 @@ export async function Hero() {
   const { t } = await getDictionary()
   const h = t.hero
   return (
-    <section className="border-b border-border gradient-hero relative overflow-hidden">
-      <div className="pointer-events-none absolute -right-20 -top-20 size-72 rounded-full bg-primary/5 blur-3xl" />
-      <div className="pointer-events-none absolute -left-16 bottom-0 size-56 rounded-full bg-deco-blue/30 blur-3xl" />
-      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 md:px-6 md:py-20 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-14 lg:py-24">
+    <section className="relative overflow-hidden mesh-hero">
+      {/* floating orbs */}
+      <div className="pointer-events-none absolute -left-24 top-20 size-72 rounded-full bg-white/30 blur-3xl animate-float-slow" />
+      <div className="pointer-events-none absolute right-0 top-10 size-96 rounded-full bg-sky-200/40 blur-3xl animate-float" />
+      <div className="pointer-events-none absolute bottom-0 left-1/3 size-64 rounded-full bg-white/25 blur-3xl animate-pulse-soft" />
+
+      <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 md:px-6 md:py-24 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16">
         <div className="animate-fade-up">
-          <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-border bg-white/80 px-3 py-1 text-xs font-medium text-deep-blue shadow-sm backdrop-blur">
-            <span className="size-1.5 rounded-full bg-primary animate-pulse" />
+          <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/50 bg-white/40 px-3.5 py-1.5 text-xs font-medium text-deep-blue shadow-sm backdrop-blur">
+            <span className="size-1.5 animate-pulse rounded-full bg-primary" />
             Қазақша · Кыргызча · KK/RU
           </p>
-          <h1 className="font-serif text-4xl font-semibold leading-[1.08] tracking-tight text-balance text-deep-blue md:text-5xl lg:text-[3.25rem]">
+          <h1 className="font-serif text-[2.75rem] font-medium leading-[1.08] tracking-tight text-deep-blue md:text-6xl lg:text-[3.75rem]">
             {h.title}
           </h1>
-          <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground text-pretty">{h.text}</p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-deep-blue/70">{h.text}</p>
+          <div className="mt-9 flex flex-wrap gap-3">
             <PilotButton size="xl" />
             <a
               href="#corpora"
-              className={cn(buttonVariants({ variant: 'outline' }), 'h-12 bg-white/90 px-6 text-base shadow-sm')}
+              className={cn(
+                buttonVariants({ variant: 'outline' }),
+                'h-12 border-white/60 bg-white/50 px-6 text-base text-deep-blue backdrop-blur hover:bg-white/80',
+              )}
             >
               {h.ctaSecondary}
             </a>
             <a
               href="/workspace"
-              className={cn(buttonVariants({ variant: 'ghost' }), 'h-12 px-4 text-base text-primary')}
+              className={cn(buttonVariants({ variant: 'ghost' }), 'h-12 px-4 text-base text-deep-blue/80')}
             >
               Открыть демо →
             </a>
           </div>
         </div>
-        <div className="animate-fade-up stagger-3">
-          <HeroDemo />
+
+        <div className="animate-fade-up stagger-3 relative">
+          <div className="absolute -inset-4 rounded-3xl bg-white/20 blur-2xl" />
+          <div className="relative glass-strong rounded-3xl p-1">
+            <HeroDemo />
+          </div>
         </div>
       </div>
     </section>

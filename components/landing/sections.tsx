@@ -17,18 +17,22 @@ export async function Services() {
   const { t } = await getDictionary()
   const s = t.services
   return (
-    <section id="services" className="scroll-mt-28 border-b border-border lg:scroll-mt-20">
+    <section id="services" className="scroll-mt-28 border-b border-white/30 lg:scroll-mt-20">
       <div className="mx-auto max-w-7xl px-4 py-16 md:px-6 md:py-20">
         <SectionHead index="02" eyebrow={s.eyebrow} title={s.title} text={s.text} />
-        <div className="mt-10 grid gap-px overflow-hidden rounded-md border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((item, i) => {
             const info = s.items[item.id]
             return (
-              <article key={item.id} className="flex flex-col bg-card p-6 transition-all duration-300 hover:bg-soft-blue/40 hover:shadow-sm">
-                <span className="font-serif text-sm tabular-nums text-terracotta">0{i + 1}</span>
-                <h3 className="mt-2 font-serif text-xl font-semibold text-primary">{info.title}</h3>
+              <article
+                key={item.id}
+                className="glass flex flex-col rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg animate-fade-up"
+                style={{ animationDelay: `${i * 0.08}s` }}
+              >
+                <span className="font-serif text-sm tabular-nums text-primary/70">0{i + 1}</span>
+                <h3 className="mt-2 font-serif text-xl font-semibold text-deep-blue">{info.title}</h3>
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{info.text}</p>
-                <p className="mt-5 border-t border-border pt-4 text-sm font-medium">
+                <p className="mt-5 border-t border-white/40 pt-4 text-sm font-medium text-deep-blue">
                   {formatMessage(s.priceLine, { price: `$${item.price}`, unit: info.unit })}
                 </p>
               </article>
@@ -46,7 +50,7 @@ export async function Quality() {
   return (
     <section
       id="quality"
-      className="scroll-mt-28 border-b border-border bg-primary text-primary-foreground lg:scroll-mt-20"
+      className="scroll-mt-28 border-b border-white/30 bg-primary text-primary-foreground lg:scroll-mt-20"
     >
       <div className="mx-auto max-w-7xl px-4 py-16 md:px-6 md:py-20">
         <SectionHead index="03" eyebrow={q.eyebrow} title={q.title} inverse />
@@ -76,7 +80,7 @@ export async function Corpora() {
   const { locale, t } = await getDictionary()
   const c = t.corpora
   return (
-    <section id="corpora" className="scroll-mt-28 border-b border-border lg:scroll-mt-20">
+    <section id="corpora" className="scroll-mt-28 border-b border-white/30 lg:scroll-mt-20">
       <div className="mx-auto max-w-7xl px-4 py-16 md:px-6 md:py-20">
         <SectionHead index="04" eyebrow={c.eyebrow} title={c.title} text={c.text} />
         <div className="mt-10 overflow-x-auto rounded-md border border-border">

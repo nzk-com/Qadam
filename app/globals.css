@@ -315,7 +315,13 @@
 }
 
 body {
-  background: #eef5fa;
+  background-color: #eef5fa;
+  background-image:
+    linear-gradient(180deg, rgba(238,245,250,0.72), rgba(238,245,250,0.88)),
+    url('/images/bg-soft-blue.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
 }
 
 @layer utilities {
@@ -415,8 +421,10 @@ a, button, [role="button"], input, select, textarea {
 .page-shell {
   min-height: calc(100vh - 3.5rem);
   background:
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgb(169 213 245 / 0.35), transparent),
-    #eef5fa;
+    linear-gradient(180deg, rgba(238,245,250,0.75), rgba(245,250,255,0.9)),
+    url('/images/bg-soft-green.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 .dash-card {
@@ -468,4 +476,19 @@ a, button, [role="button"], input, select, textarea {
 .admin-card:hover {
   border-color: rgba(56, 189, 248, 0.25);
   background: rgba(255, 255, 255, 0.06);
+}
+
+.section-soft {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.55), rgba(238,245,250,0.7)),
+    url('/images/bg-soft-cream.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.section-mist {
+  background:
+    linear-gradient(180deg, rgba(238,245,250,0.65), rgba(255,255,255,0.55)),
+    url('/images/bg-soft-green.jpg');
+  background-size: cover;
+  background-position: center;
 }

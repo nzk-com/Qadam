@@ -55,7 +55,7 @@ export function Logo({ className, compact = false }: { className?: string; compa
     >
       <LogoMark size={compact ? 28 : 36} />
       <span className={cn('font-semibold tracking-tight text-deep-blue', compact ? 'text-sm' : 'text-lg')}>
-        Dala <span className="font-normal text-primary/80">AI</span>
+        Dala
       </span>
     </Link>
   )

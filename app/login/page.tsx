@@ -13,7 +13,7 @@ const roles: { id: DemoRole; label: string; desc: string; badge: string }[] = [
 ]
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('demo@dala.ai')
+  const [email, setEmail] = useState('demo@qadam.ai')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
 
@@ -23,7 +23,7 @@ export default function LoginPage() {
     try {
       saveDemoUser({
         name: email.split('@')[0] || 'Демо',
-        email: email.trim() || 'demo@dala.ai',
+        email: email.trim() || 'demo@qadam.ai',
         role,
       })
       window.location.href = roleHome(role)
@@ -38,7 +38,7 @@ export default function LoginPage() {
       <div className="w-full max-w-lg animate-scale-in glass-strong rounded-3xl p-8">
         <div className="mb-7 flex flex-col items-center gap-2 text-center">
           <Logo />
-          <h1 className="text-2xl font-semibold tracking-tight text-deep-blue">Вход в Dala AI</h1>
+          <h1 className="text-2xl font-semibold tracking-tight text-deep-blue">Вход в Qadam</h1>
           <p className="max-w-sm text-sm text-muted-foreground">
             Демо-вход: выберите роль — откроется отдельная страница. Это не настоящая авторизация.
           </p>
@@ -51,7 +51,7 @@ export default function LoginPage() {
             className="w-full rounded-xl border border-border bg-white/80 px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-primary/30"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="demo@dala.ai"
+            placeholder="demo@qadam.ai"
           />
         </div>
 

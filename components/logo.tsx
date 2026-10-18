@@ -12,7 +12,7 @@ export function LogoMark({ className, size = 36 }: { className?: string; size?: 
       {/* Prefer the attached blue tiger illustration */}
       <Image
         src="/images/dala-tiger.png"
-        alt="Dala AI"
+        alt="Qadam"
         width={size}
         height={size}
         className="object-contain"
@@ -51,11 +51,11 @@ export function Logo({ className, compact = false }: { className?: string; compa
     <Link
       href="/"
       className={cn('flex items-center gap-2.5', className)}
-      aria-label={t.nav?.home ?? 'Dala AI'}
+      aria-label={t.nav?.home ?? 'Qadam'}
     >
       <LogoMark size={compact ? 28 : 36} />
       <span className={cn('font-semibold tracking-tight text-deep-blue', compact ? 'text-sm' : 'text-lg')}>
-        Dala
+        Qadam
       </span>
     </Link>
   )

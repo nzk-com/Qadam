@@ -2,14 +2,14 @@ import type { Dictionary } from './ru'
 
 export const en: Dictionary = {
   meta: {
-    title: 'Dala AI — Human-quality AI data for Turkic languages',
+    title: 'Qadam — Human-quality AI data for Turkic languages',
     description:
       'A platform to create, train and deliver high-quality AI data in Kazakh and Kyrgyz: RLHF, red-teaming, localization and corpora.',
     ogDescription: 'RLHF, red-teaming and corpora in Kazakh and Kyrgyz by native speakers.',
-    client: 'Client portal — Dala AI',
-    academy: 'Annotator Academy — Dala AI',
-    admin: 'Admin panel — Dala AI',
-    rlhf: 'RLHF annotation — Dala AI',
+    client: 'Client portal — Qadam',
+    academy: 'Annotator Academy — Qadam',
+    admin: 'Admin panel — Qadam',
+    rlhf: 'RLHF annotation — Qadam',
   },
   topbar: {
     tagline: 'Human-quality AI data for Turkic languages',
@@ -18,7 +18,7 @@ export const en: Dictionary = {
   nav: {
     main: 'Main navigation',
     platform: 'Platform sections',
-    home: 'Dala AI — home',
+    home: 'Qadam — home',
     services: 'Services',
     quality: 'Quality',
     corpora: 'Corpora',
@@ -52,7 +52,7 @@ export const en: Dictionary = {
   audience: {
     eyebrow: 'Audience',
     title: 'Who it’s for',
-    text: 'Dala AI works with teams that need Kazakh and Kyrgyz AI to be reliable in production.',
+    text: 'Qadam works with teams that need Kazakh and Kyrgyz AI to be reliable in production.',
     items: [
       {
         title: 'AI teams',
@@ -222,7 +222,7 @@ export const en: Dictionary = {
     platform: 'Platform',
     services: 'Services',
     contacts: 'Contact',
-    rights: '© 2026 Dala AI. All rights reserved.',
+    rights: '© 2026 Qadam. All rights reserved.',
     security: 'NDA · RBAC · data encryption',
     academyFull: 'Annotator Academy',
   },

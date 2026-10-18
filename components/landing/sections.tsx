@@ -174,14 +174,14 @@ export async function Footer() {
           </div>
           <div>
             <p className="font-semibold text-deep-blue">Контакт</p>
-            <a href="mailto:contact@dala.ai" className="mt-3 inline-flex items-center gap-1.5 text-deep-blue/55 hover:text-deep-blue">
-              <Mail className="size-3.5" /> contact@dala.ai
+            <a href="mailto:contact@qadam.ai" className="mt-3 inline-flex items-center gap-1.5 text-deep-blue/55 hover:text-deep-blue">
+              <Mail className="size-3.5" /> contact@qadam.ai
             </a>
           </div>
         </div>
       </div>
       <div className="border-t border-white/30 py-4 text-center text-xs text-deep-blue/40">
-        © {new Date().getFullYear()} Dala AI · демо-прототип
+        © {new Date().getFullYear()} Qadam · демо-прототип
       </div>
     </footer>
   )

@@ -47,7 +47,7 @@
 
 :root {
   color-scheme: light;
-  /* Dala AI blue palette */
+  /* Qadam blue palette */
   --background: #FFFFFF;
   --foreground: #172B45;
   --card: #FFFFFF;
@@ -179,7 +179,7 @@
   }
 }
 
-/* ========== Dala AI polish & animations ========== */
+/* ========== Qadam polish & animations ========== */
 
 @layer base {
   html {

@@ -2,14 +2,14 @@ import type { Dictionary } from './ru'
 
 export const kk: Dictionary = {
   meta: {
-    title: 'Dala AI — түркі тілдеріне арналған адам сапасындағы AI деректері',
+    title: 'Qadam — түркі тілдеріне арналған адам сапасындағы AI деректері',
     description:
       'Қазақ және қырғыз тілдеріндегі жоғары сапалы AI деректерін жасауға, үйретуге және сатуға арналған платформа: RLHF, red-teaming, локализация, корпустар.',
     ogDescription: 'Ана тілі иелерінен қазақ және қырғыз тілдеріндегі RLHF, red-teaming және корпустар.',
-    client: 'Клиент кабинеті — Dala AI',
-    academy: 'Аннотаторлар академиясы — Dala AI',
-    admin: 'Әкімші панелі — Dala AI',
-    rlhf: 'RLHF-белгілеу — Dala AI',
+    client: 'Клиент кабинеті — Qadam',
+    academy: 'Аннотаторлар академиясы — Qadam',
+    admin: 'Әкімші панелі — Qadam',
+    rlhf: 'RLHF-белгілеу — Qadam',
   },
   topbar: {
     tagline: 'Түркі тілдеріне арналған адам сапасындағы AI деректері',
@@ -18,7 +18,7 @@ export const kk: Dictionary = {
   nav: {
     main: 'Негізгі навигация',
     platform: 'Платформа бөлімдері',
-    home: 'Dala AI — басты бетке',
+    home: 'Qadam — басты бетке',
     services: 'Қызметтер',
     quality: 'Сапа',
     corpora: 'Корпустар',
@@ -52,7 +52,7 @@ export const kk: Dictionary = {
   audience: {
     eyebrow: 'Аудитория',
     title: 'Кімдерге арналған',
-    text: 'Dala AI қазақ және қырғыз тілдеріндегі жасанды интеллект өндірісте сенімді жұмыс істеуі керек командалармен жұмыс істейді.',
+    text: 'Qadam қазақ және қырғыз тілдеріндегі жасанды интеллект өндірісте сенімді жұмыс істеуі керек командалармен жұмыс істейді.',
     items: [
       {
         title: 'AI-командалар',
@@ -222,7 +222,7 @@ export const kk: Dictionary = {
     platform: 'Платформа',
     services: 'Қызметтер',
     contacts: 'Байланыс',
-    rights: '© 2026 Dala AI. Барлық құқықтар қорғалған.',
+    rights: '© 2026 Qadam. Барлық құқықтар қорғалған.',
     security: 'NDA · RBAC · деректерді шифрлау',
     academyFull: 'Аннотаторлар академиясы',
   },

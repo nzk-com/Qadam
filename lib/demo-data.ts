@@ -1,5 +1,5 @@
 /**
- * Dala AI — Demo data
+ * Qadam — Demo data
  * All content is DEMO only. expertReviewStatus is always "pending".
  * Do not treat suggested answers as expert-verified.
  */

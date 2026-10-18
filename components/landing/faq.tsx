@@ -30,8 +30,8 @@ export async function Faq() {
         </div>
         <p className="mt-10 text-center text-sm text-deep-blue/50">
           {f.more}{' '}
-          <a href="mailto:contact@dala.ai" className="inline-flex items-center gap-1.5 font-medium text-primary hover:underline">
-            <Mail className="size-3.5" /> contact@dala.ai
+          <a href="mailto:contact@qadam.ai" className="inline-flex items-center gap-1.5 font-medium text-primary hover:underline">
+            <Mail className="size-3.5" /> contact@qadam.ai
           </a>
         </p>
       </div>

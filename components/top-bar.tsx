@@ -12,11 +12,11 @@ export function TopBar() {
         <p className="hidden truncate text-xs text-deep-blue/55 sm:block">{t.topbar.tagline}</p>
         <div className="ml-auto flex items-center gap-5">
           <a
-            href="mailto:contact@dala.ai"
+            href="mailto:contact@qadam.ai"
             className="hidden items-center gap-1.5 text-xs text-deep-blue/55 hover:text-deep-blue md:flex"
           >
             <Mail className="size-3.5" />
-            contact@dala.ai
+            contact@qadam.ai
           </a>
           <LanguageSwitcher />
         </div>

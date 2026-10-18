@@ -174,7 +174,7 @@ export function Workspace() {
         <div className="mx-auto flex max-w-[1400px] flex-wrap items-center gap-3 px-4 py-3 md:px-6">
           <div className="min-w-0 flex-1">
             <p className="text-sm font-medium text-deep-blue">
-              Dala AI · Демо-рабочая среда
+              Qadam · Демо-рабочая среда
             </p>
             <p className="text-xs text-muted-foreground">
               {current ? `${current.id} · ${current.language} · ${current.taskType}` : 'Нет заданий'} · Демо

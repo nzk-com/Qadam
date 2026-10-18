@@ -7,7 +7,7 @@ export async function Audience() {
   const { t } = await getDictionary()
   const a = t.audience
   return (
-    <section id="audience" className="section-soft relative scroll-mt-28 lg:scroll-mt-20">
+    <section id="audience" className="section-soft section-blend relative scroll-mt-28 lg:scroll-mt-20">
       <div className="mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-24">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-deep-blue/45">{a.eyebrow}</p>

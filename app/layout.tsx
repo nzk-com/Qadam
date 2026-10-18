@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from 'next'
 import { Inter, Lora } from 'next/font/google'
 import { I18nProvider } from '@/components/i18n-provider'
 import { TopBar } from '@/components/top-bar'
+import { PageTransition } from '@/components/page-transition'
 import { getDictionary } from '@/lib/i18n/server'
 import './globals.css'
 
@@ -49,7 +50,7 @@ export default async function RootLayout({
       <body className="font-sans antialiased bg-background text-foreground">
         <I18nProvider locale={locale} dictionary={t}>
           <TopBar />
-          {children}
+          <PageTransition>{children}</PageTransition>
         </I18nProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

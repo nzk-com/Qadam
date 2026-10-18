@@ -168,9 +168,9 @@ export function Workspace() {
   }
 
   return (
-    <div className="flex min-h-[calc(100vh-3.5rem)] flex-col bg-secondary/40">
+    <div className="page-shell flex min-h-[calc(100vh-3.5rem)] flex-col">
       {/* Top bar */}
-      <div className="border-b border-border bg-white">
+      <div className="border-b border-white/40 bg-white/60 backdrop-blur-md">
         <div className="mx-auto flex max-w-[1400px] flex-wrap items-center gap-3 px-4 py-3 md:px-6">
           <div className="min-w-0 flex-1">
             <p className="text-sm font-medium text-deep-blue">
@@ -267,7 +267,7 @@ export function Workspace() {
       ) : (
         <div className="mx-auto grid w-full max-w-[1400px] flex-1 animate-fade-in grid-cols-1 gap-4 p-4 lg:grid-cols-[240px_1fr_280px] md:px-6">
           {/* Left: instructions */}
-          <aside className="space-y-4 rounded-xl border border-border bg-white p-4 text-sm shadow-sm">
+          <aside className="dash-card space-y-4 p-4 text-sm">
             <div>
               <h3 className="mb-1 font-semibold text-deep-blue">Инструкция</h3>
               <p className="text-muted-foreground text-xs leading-relaxed">

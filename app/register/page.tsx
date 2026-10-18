@@ -32,8 +32,8 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center gradient-hero px-4 py-12">
-      <div className="w-full max-w-md animate-scale-in rounded-2xl border border-border bg-white/95 p-8 soft-glow backdrop-blur">
+    <div className="page-shell flex min-h-screen items-center justify-center px-4 py-12">
+      <div className="w-full max-w-md animate-scale-in glass-strong rounded-3xl p-8">
         <div className="mb-6 flex flex-col items-center gap-2 text-center">
           <Logo />
           <h1 className="text-xl font-semibold text-deep-blue">Регистрация</h1>
@@ -46,7 +46,7 @@ export default function RegisterPage() {
           <div>
             <label className="mb-1 block text-sm font-medium text-deep-blue">Имя</label>
             <input
-              className="w-full rounded-lg border border-border bg-secondary/40 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-primary/30"
+              className="w-full rounded-xl border border-border bg-white/80 px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-primary/30"
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Как к вам обращаться"
@@ -56,7 +56,7 @@ export default function RegisterPage() {
             <label className="mb-1 block text-sm font-medium text-deep-blue">Email</label>
             <input
               type="email"
-              className="w-full rounded-lg border border-border bg-secondary/40 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-primary/30"
+              className="w-full rounded-xl border border-border bg-white/80 px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-primary/30"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"

@@ -20,8 +20,8 @@ export default function AdminPanelPage() {
   return (
     <>
       <AppHeader />
-      <main className="min-h-[calc(100vh-3.5rem)] bg-[#0f172a] text-slate-100">
-        <div className="border-b border-white/10 bg-[#111827]">
+      <main className="admin-shell">
+        <div className="border-b border-white/10 bg-black/20 backdrop-blur-md">
           <div className="mx-auto flex max-w-7xl flex-wrap items-end justify-between gap-4 px-4 py-8 md:px-6">
             <div>
               <p className="text-xs font-medium uppercase tracking-wide text-sky-400">Админ-панель</p>
@@ -69,7 +69,7 @@ export default function AdminPanelPage() {
               { label: 'Кыргызский (ky)', value: String(taskStats.byLanguage.ky), icon: Activity },
               { label: 'Код-свитч', value: String(taskStats.byLanguage['kk-ru']), icon: Activity },
             ].map((s) => (
-              <div key={s.label} className="rounded-xl border border-white/10 bg-white/5 p-4">
+              <div key={s.label} className="admin-card p-4">
                 <dt className="flex items-center gap-2 text-xs text-slate-400">
                   <s.icon className="size-3.5" />
                   {s.label}
@@ -80,7 +80,7 @@ export default function AdminPanelPage() {
           </dl>
 
           <div className="mt-8 grid gap-6 lg:grid-cols-2">
-            <section className="rounded-xl border border-white/10 bg-white/5 p-5">
+            <section className="admin-card p-5">
               <div className="mb-4 flex items-center gap-2">
                 <Users className="size-5 text-sky-400" />
                 <h2 className="text-lg font-semibold text-white">Участники (демо)</h2>
@@ -103,7 +103,7 @@ export default function AdminPanelPage() {
               </ul>
             </section>
 
-            <section className="rounded-xl border border-white/10 bg-white/5 p-5">
+            <section className="admin-card p-5">
               <div className="mb-4 flex items-center gap-2">
                 <AlertTriangle className="size-5 text-amber-400" />
                 <h2 className="text-lg font-semibold text-white">Споры / низкое согласие</h2>
@@ -125,7 +125,7 @@ export default function AdminPanelPage() {
             </section>
           </div>
 
-          <section className="mt-6 rounded-xl border border-white/10 bg-white/5 p-5">
+          <section className="mt-6 admin-card p-5">
             <div className="mb-4 flex items-center gap-2">
               <Shield className="size-5 text-sky-400" />
               <h2 className="text-lg font-semibold text-white">Журнал аудита (демо)</h2>

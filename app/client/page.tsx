@@ -32,8 +32,8 @@ export default function ClientCabinetPage() {
   return (
     <>
       <AppHeader />
-      <main className="min-h-[calc(100vh-3.5rem)] bg-secondary/30">
-        <div className="border-b border-border bg-white">
+      <main className="page-shell">
+        <div className="border-b border-white/40 bg-white/50 backdrop-blur-md">
           <div className="mx-auto flex max-w-7xl flex-wrap items-end justify-between gap-4 px-4 py-8 md:px-6">
             <div>
               <p className="text-xs font-medium uppercase tracking-wide text-primary">Кабинет клиента</p>
@@ -94,7 +94,7 @@ export default function ClientCabinetPage() {
               {clientProjects.map((p) => (
                 <article
                   key={p.id}
-                  className="rounded-xl border border-border bg-white p-5 shadow-sm transition hover:border-primary/40"
+                  className="dash-card p-5 shadow-sm transition hover:border-primary/40"
                 >
                   <div className="flex flex-wrap items-start justify-between gap-3">
                     <div>

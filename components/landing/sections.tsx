@@ -53,7 +53,7 @@ export async function Quality() {
   return (
     <section
       id="quality"
-      className="scroll-mt-28 border-b border-white/30 bg-primary text-primary-foreground lg:scroll-mt-20"
+      className="scroll-mt-28 border-b border-white/30 bg-gradient-to-b from-[#8eb4d0]/50 to-[#eef5fa] text-deep-blue lg:scroll-mt-20"
     >
       <div className="mx-auto max-w-7xl px-4 py-16 md:px-6 md:py-20">
         <SectionHead index="03" eyebrow={q.eyebrow} title={q.title} inverse />
@@ -62,11 +62,11 @@ export async function Quality() {
             <li key={step.title} className="bg-primary p-5">
               <span className="font-serif text-2xl text-sand">0{i + 1}</span>
               <h3 className="mt-3 font-medium">{step.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-primary-foreground/70">{step.text}</p>
+              <p className="mt-2 text-sm leading-relaxed text-deep-blue/60">{step.text}</p>
             </li>
           ))}
         </ol>
-        <ul className="mt-8 flex flex-wrap gap-x-8 gap-y-2 text-sm text-primary-foreground/80">
+        <ul className="mt-8 flex flex-wrap gap-x-8 gap-y-2 text-sm text-deep-blue/70">
           {q.assurances.map((x) => (
             <li key={x} className="flex items-center gap-2">
               <Check className="size-4 text-sand" />

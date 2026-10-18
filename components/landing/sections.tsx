@@ -147,7 +147,7 @@ export async function Corpora() {
 export async function Footer() {
   const { t } = await getDictionary()
   return (
-    <footer className="border-t border-white/40 bg-white/30 backdrop-blur-md">
+    <footer className="border-t border-white/40 bg-white/20 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl flex-col gap-8 px-4 py-12 md:flex-row md:items-start md:justify-between md:px-6">
         <div>
           <Logo />

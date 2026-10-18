@@ -47,7 +47,8 @@ export default async function RootLayout({
   const { locale, t } = await getDictionary()
   return (
     <html lang={locale} className={`${inter.variable} ${lora.variable}`}>
-      <body className="font-sans antialiased bg-background text-foreground">
+      <body className="font-sans antialiased text-foreground">
+        <div className="site-bg" aria-hidden="true" />
         <I18nProvider locale={locale} dictionary={t}>
           <TopBar />
           <PageTransition>{children}</PageTransition>

@@ -315,11 +315,21 @@
 }
 
 body {
-  background-color: #e8f0e8;
+  background-color: #dce8dc;
+}
+
+/* Fixed layer — no scroll lag (unlike background-attachment: fixed) */
+.site-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
   background-image: url('/images/hero-steppe.jpg');
   background-size: cover;
-  background-attachment: fixed;
   background-position: center bottom;
+  background-repeat: no-repeat;
+  transform: translateZ(0);
+  will-change: transform;
+  pointer-events: none;
 }
 
 @layer utilities {

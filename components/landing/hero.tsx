@@ -59,18 +59,17 @@ export async function Hero() {
         className="object-cover object-center"
         sizes="100vw"
       />
-      {/* Light wash — steppe stays visible */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/15 to-white/40" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent" />
+      {/* Minimal veil — landscape stays sharp */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-white/50" />
 
       <div className="relative mx-auto flex max-w-7xl flex-col items-center px-4 pb-24 pt-36 text-center md:px-6 md:pt-44">
-        <p className="animate-fade-up mb-4 text-[11px] font-semibold uppercase tracking-[0.24em] text-deep-blue/55">
+        <p className="animate-fade-up mb-4 text-[11px] font-semibold uppercase tracking-[0.24em] text-deep-blue drop-shadow-sm">
           Human data · Turkic languages
         </p>
-        <h1 className="animate-fade-up stagger-1 max-w-4xl font-serif text-[3.1rem] font-medium leading-[1.06] tracking-tight text-deep-blue md:text-6xl lg:text-[4.5rem]">
+        <h1 className="animate-fade-up stagger-1 max-w-4xl font-serif text-[3.1rem] font-medium leading-[1.06] tracking-tight text-deep-blue drop-shadow-[0_2px_12px_rgba(255,255,255,0.85)] md:text-6xl lg:text-[4.5rem]">
           {h.title}
         </h1>
-        <p className="animate-fade-up stagger-2 mx-auto mt-6 max-w-2xl text-base leading-relaxed text-deep-blue/70 md:text-lg">
+        <p className="animate-fade-up stagger-2 mx-auto mt-6 max-w-2xl text-base leading-relaxed text-deep-blue/90 drop-shadow-[0_1px_8px_rgba(255,255,255,0.8)] md:text-lg">
           {h.text}
         </p>
 

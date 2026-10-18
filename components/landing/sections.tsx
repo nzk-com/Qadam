@@ -8,9 +8,9 @@ import { getDictionary } from '@/lib/i18n/server'
 import { cn } from '@/lib/utils'
 
 const statusStyles: Record<CorpusStatusId, { badge: string; dot: string }> = {
-  available: { badge: 'bg-success/10 text-success', dot: 'bg-success' },
-  production: { badge: 'bg-terracotta/10 text-terracotta', dot: 'bg-terracotta' },
-  custom: { badge: 'bg-accent text-primary', dot: 'bg-sand' },
+  available: { badge: 'bg-emerald-500/10 text-emerald-700', dot: 'bg-emerald-500' },
+  production: { badge: 'bg-amber-500/10 text-amber-700', dot: 'bg-amber-500' },
+  custom: { badge: 'bg-primary/10 text-primary', dot: 'bg-primary' },
 }
 
 export async function Services() {
@@ -18,24 +18,25 @@ export async function Services() {
   const s = t.services
   return (
     <section id="services" className="scroll-mt-28 lg:scroll-mt-20">
-      <div className="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-20">
+      <div className="mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-24">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-deep-blue/50">{s.eyebrow}</p>
-          <h2 className="mt-3 font-serif text-3xl font-medium tracking-tight text-deep-blue md:text-4xl">{s.title}</h2>
-          <p className="mt-4 text-deep-blue/60">{s.text}</p>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-deep-blue/45">{s.eyebrow}</p>
+          <h2 className="mt-3 font-serif text-3xl font-medium tracking-tight text-deep-blue md:text-[2.5rem]">{s.title}</h2>
+          <p className="mt-4 text-base leading-relaxed text-deep-blue/55">{s.text}</p>
         </div>
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((item, i) => {
             const info = s.items[item.id]
             return (
               <article
                 key={item.id}
-                className="flex flex-col rounded-3xl border border-white/50 bg-white/40 p-7 shadow-[0_12px_40px_rgba(15,40,80,0.06)] backdrop-blur-xl transition duration-300 hover:-translate-y-1.5 hover:bg-white/55"
+                className="group relative overflow-hidden rounded-[1.35rem] border border-white/60 bg-white/50 p-7 shadow-[0_10px_40px_-16px_rgba(15,40,80,0.12)] backdrop-blur-xl transition duration-300 hover:-translate-y-1.5 hover:border-white/80 hover:bg-white/70 hover:shadow-[0_20px_50px_-16px_rgba(15,40,80,0.18)]"
               >
-                <span className="font-serif text-3xl font-medium tabular-nums text-deep-blue/25">0{i + 1}</span>
-                <h3 className="mt-3 font-serif text-xl font-medium text-deep-blue">{info.title}</h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-deep-blue/60">{info.text}</p>
-                <p className="mt-6 border-t border-white/40 pt-4 text-sm font-medium text-deep-blue">
+                <div className="absolute -right-6 -top-6 size-24 rounded-full bg-primary/5 transition group-hover:bg-primary/10" />
+                <span className="relative font-serif text-4xl font-medium tabular-nums text-deep-blue/15">0{i + 1}</span>
+                <h3 className="relative mt-3 font-serif text-xl font-medium text-deep-blue">{info.title}</h3>
+                <p className="relative mt-2 flex-1 text-sm leading-relaxed text-deep-blue/55">{info.text}</p>
+                <p className="relative mt-6 border-t border-deep-blue/8 pt-4 text-sm font-semibold text-deep-blue">
                   {formatMessage(s.priceLine, { price: `$${item.price}`, unit: info.unit })}
                 </p>
               </article>
@@ -53,26 +54,33 @@ export async function Quality() {
   return (
     <section
       id="quality"
-      className="scroll-mt-28 border-b border-white/30 bg-gradient-to-b from-[#8eb4d0]/50 to-[#eef5fa] text-deep-blue lg:scroll-mt-20"
+      className="scroll-mt-28 lg:scroll-mt-20"
     >
-      <div className="mx-auto max-w-7xl px-4 py-16 md:px-6 md:py-20">
-        <SectionHead index="03" eyebrow={q.eyebrow} title={q.title} />
-        <ol className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+      <div className="mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-24">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-deep-blue/45">{q.eyebrow}</p>
+          <h2 className="mt-3 font-serif text-3xl font-medium tracking-tight text-deep-blue md:text-[2.5rem]">{q.title}</h2>
+        </div>
+        <ol className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {q.steps.map((step, i) => (
             <li
               key={step.title}
-              className="rounded-2xl border border-white/50 bg-white/45 p-5 shadow-[0_8px_28px_rgba(15,40,80,0.06)] backdrop-blur-xl transition hover:-translate-y-1 hover:bg-white/60"
+              className="group relative overflow-hidden rounded-[1.25rem] border border-white/60 bg-white/50 p-6 shadow-[0_10px_40px_-16px_rgba(15,40,80,0.1)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:bg-white/70"
             >
-              <span className="font-serif text-2xl font-medium text-primary/40">0{i + 1}</span>
-              <h3 className="mt-3 font-medium text-deep-blue">{step.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-deep-blue/60">{step.text}</p>
+              <span className="bg-gradient-to-br from-primary to-sky-400 bg-clip-text font-serif text-3xl font-semibold text-transparent">
+                0{i + 1}
+              </span>
+              <h3 className="mt-3 text-[15px] font-semibold text-deep-blue">{step.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-deep-blue/55">{step.text}</p>
             </li>
           ))}
         </ol>
-        <ul className="mt-8 flex flex-wrap gap-x-8 gap-y-2 text-sm text-deep-blue/70">
+        <ul className="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm text-deep-blue/65">
           {q.assurances.map((x) => (
             <li key={x} className="flex items-center gap-2">
-              <Check className="size-4 text-primary" />
+              <span className="flex size-5 items-center justify-center rounded-full bg-primary/10">
+                <Check className="size-3 text-primary" />
+              </span>
               {x}
             </li>
           ))}
@@ -86,62 +94,50 @@ export async function Corpora() {
   const { locale, t } = await getDictionary()
   const c = t.corpora
   return (
-    <section id="corpora" className="scroll-mt-28 border-b border-white/30 lg:scroll-mt-20">
-      <div className="mx-auto max-w-7xl px-4 py-16 md:px-6 md:py-20">
-        <SectionHead index="04" eyebrow={c.eyebrow} title={c.title} text={c.text} />
-        <div className="mt-10 overflow-x-auto rounded-md border border-border">
-          <table className="w-full min-w-[720px] text-left text-sm">
-            <thead className="bg-secondary text-muted-foreground">
-              <tr>
-                <th className="px-4 py-3 font-medium">{c.cols.name}</th>
-                <th className="px-4 py-3 font-medium">{c.cols.status}</th>
-                <th className="px-4 py-3 font-medium">{c.cols.lang}</th>
-                <th className="px-4 py-3 font-medium">{c.cols.size}</th>
-                <th className="px-4 py-3 font-medium">{c.cols.license}</th>
-                <th className="px-4 py-3" />
-              </tr>
-            </thead>
-            <tbody>
-              {corpora.map((row) => (
-                <tr key={row.name} className="border-t border-border">
-                  <td className="px-4 py-3 font-medium">{row.name}</td>
-                  <td className="px-4 py-3">
-                    <span
-                      className={cn(
-                        'inline-flex items-center gap-1.5 whitespace-nowrap rounded-sm px-2.5 py-0.5 text-xs font-medium',
-                        statusStyles[row.status].badge,
-                      )}
-                    >
-                      <span className={cn('size-1.5 rounded-full', statusStyles[row.status].dot)} aria-hidden="true" />
-                      {c.statuses[row.status]}
-                    </span>
-                  </td>
-                  <td className="px-4 py-3 text-muted-foreground">{c.languages[row.lang]}</td>
-                  <td className="whitespace-nowrap px-4 py-3 text-muted-foreground">
-                    {row.n === null ? '—' : `${formatNumber(locale, row.n)} ${c.units[row.unit]}`}
-                  </td>
-                  <td className="px-4 py-3">
-                    <span className="whitespace-nowrap rounded-sm bg-accent px-2.5 py-0.5 text-xs">
-                      {c.licenses[row.license]}
-                    </span>
-                  </td>
-                  <td className="px-4 py-3 text-right">
-                    <a
-                      href="#request"
-                      className="inline-flex items-center gap-1.5 whitespace-nowrap text-terracotta hover:underline"
-                    >
-                      {row.status === 'available' ? (
-                        <Download className="size-4" aria-hidden="true" />
-                      ) : (
-                        <ArrowRight className="size-4" aria-hidden="true" />
-                      )}
-                      {c.actions[row.status]}
-                    </a>
-                  </td>
+    <section id="corpora" className="scroll-mt-28 lg:scroll-mt-20">
+      <div className="mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-24">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-deep-blue/45">{c.eyebrow}</p>
+          <h2 className="mt-3 font-serif text-3xl font-medium tracking-tight text-deep-blue md:text-[2.5rem]">{c.title}</h2>
+          <p className="mt-4 text-base leading-relaxed text-deep-blue/55">{c.text}</p>
+        </div>
+        <div className="mt-12 overflow-hidden rounded-[1.35rem] border border-white/60 bg-white/50 shadow-[0_10px_40px_-16px_rgba(15,40,80,0.1)] backdrop-blur-xl">
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[720px] text-left text-sm">
+              <thead>
+                <tr className="border-b border-deep-blue/8 text-deep-blue/50">
+                  <th className="px-5 py-4 font-medium">{c.cols.name}</th>
+                  <th className="px-5 py-4 font-medium">{c.cols.status}</th>
+                  <th className="px-5 py-4 font-medium">{c.cols.lang}</th>
+                  <th className="px-5 py-4 font-medium">{c.cols.size}</th>
+                  <th className="px-5 py-4 font-medium">{c.cols.license}</th>
+                  <th className="px-5 py-4" />
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {corpora.map((row) => {
+                  const st = statusStyles[row.status] ?? statusStyles.custom
+                  return (
+                    <tr key={row.name} className="border-b border-deep-blue/5 last:border-0 transition hover:bg-white/40">
+                      <td className="px-5 py-4 font-medium text-deep-blue">{row.name}</td>
+                      <td className="px-5 py-4">
+                        <span className={cn('inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium', st.badge)}>
+                          <span className={cn('size-1.5 rounded-full', st.dot)} />
+                          {row.status}
+                        </span>
+                      </td>
+                      <td className="px-5 py-4 text-deep-blue/70">{row.lang}</td>
+                      <td className="px-5 py-4 text-deep-blue/70">{row.type}</td>
+                      <td className="px-5 py-4 text-deep-blue/70">{row.availability}</td>
+                      <td className="px-5 py-4 text-right">
+                        <span className="text-xs text-deep-blue/40">демо</span>
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </section>
@@ -150,49 +146,42 @@ export async function Corpora() {
 
 export async function Footer() {
   const { t } = await getDictionary()
-  const f = t.footer
   return (
-    <footer className="border-t border-border bg-secondary">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 md:grid-cols-[1.4fr_1fr_1fr_1fr] md:px-6">
+    <footer className="border-t border-white/40 bg-white/30 backdrop-blur-md">
+      <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-12 md:flex-row md:items-start md:justify-between md:px-6">
         <div>
           <Logo />
-          <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">{f.tagline}</p>
+          <p className="mt-3 max-w-xs text-sm leading-relaxed text-deep-blue/50">
+            {t.meta?.description ?? 'Данные для ИИ человеческого качества на тюркских языках.'}
+          </p>
         </div>
-        <nav aria-label={f.platform}>
-          <h2 className="text-xs font-medium uppercase tracking-[0.14em] text-foreground">{f.platform}</h2>
-          <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-            <li><Link href="/client" className="hover:text-foreground">{t.nav.client}</Link></li>
-            <li><Link href="/academy" className="hover:text-foreground">{f.academyFull}</Link></li>
-            <li><Link href="/rlhf" className="hover:text-foreground">{t.nav.workspace}</Link></li>
-            <li><Link href="/admin" className="hover:text-foreground">{t.nav.admin}</Link></li>
-          </ul>
-        </nav>
-        <nav aria-label={f.services}>
-          <h2 className="text-xs font-medium uppercase tracking-[0.14em] text-foreground">{f.services}</h2>
-          <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-            {services.map((s) => (
-              <li key={s.id}>
-                <a href="#services" className="hover:text-foreground">{t.services.items[s.id].title}</a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-        <div>
-          <h2 className="text-xs font-medium uppercase tracking-[0.14em] text-foreground">{f.contacts}</h2>
-          <a
-            href="mailto:contact@dala.ai"
-            className="mt-4 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
-          >
-            <Mail className="size-4" />
-            contact@dala.ai
-          </a>
+        <div className="flex flex-wrap gap-10 text-sm">
+          <div>
+            <p className="font-semibold text-deep-blue">Продукт</p>
+            <ul className="mt-3 space-y-2 text-deep-blue/55">
+              <li><a href="#services" className="hover:text-deep-blue">Услуги</a></li>
+              <li><a href="#quality" className="hover:text-deep-blue">Качество</a></li>
+              <li><Link href="/workspace" className="hover:text-deep-blue">Демо</Link></li>
+            </ul>
+          </div>
+          <div>
+            <p className="font-semibold text-deep-blue">Аккаунт</p>
+            <ul className="mt-3 space-y-2 text-deep-blue/55">
+              <li><Link href="/login" className="hover:text-deep-blue">Вход</Link></li>
+              <li><Link href="/register" className="hover:text-deep-blue">Регистрация</Link></li>
+              <li><Link href="/client" className="hover:text-deep-blue">Кабинет</Link></li>
+            </ul>
+          </div>
+          <div>
+            <p className="font-semibold text-deep-blue">Контакт</p>
+            <a href="mailto:contact@dala.ai" className="mt-3 inline-flex items-center gap-1.5 text-deep-blue/55 hover:text-deep-blue">
+              <Mail className="size-3.5" /> contact@dala.ai
+            </a>
+          </div>
         </div>
       </div>
-      <div className="border-t border-border">
-        <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-5 text-xs text-muted-foreground md:flex-row md:justify-between md:px-6">
-          <p>{f.rights}</p>
-          <p>{f.security}</p>
-        </div>
+      <div className="border-t border-white/30 py-4 text-center text-xs text-deep-blue/40">
+        © {new Date().getFullYear()} Dala AI · демо-прототип
       </div>
     </footer>
   )

@@ -22,6 +22,10 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: t.meta.title,
     description: t.meta.description,
+    // Site has its own KK/RU/EN switcher — block Chrome auto-translate popup
+    other: {
+      google: 'notranslate',
+    },
     openGraph: {
       title: t.meta.title,
       description: t.meta.ogDescription,
@@ -46,8 +50,8 @@ export default async function RootLayout({
 }>) {
   const { locale, t } = await getDictionary()
   return (
-    <html lang={locale} className={`${inter.variable} ${lora.variable}`}>
-      <body className="font-sans antialiased text-foreground">
+    <html lang={locale} translate="no" className={`notranslate ${inter.variable} ${lora.variable}`}>
+      <body className="notranslate font-sans antialiased text-foreground">
         <div className="site-bg" aria-hidden="true" />
         <I18nProvider locale={locale} dictionary={t}>
           <TopBar />

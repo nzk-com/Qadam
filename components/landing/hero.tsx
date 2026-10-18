@@ -59,9 +59,9 @@ export async function Hero() {
         className="object-cover object-center"
         sizes="100vw"
       />
-      {/* Soft wash for readable text */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white/55 via-white/35 to-[#eef5fa]" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#eef5fa] via-transparent to-white/20" />
+      {/* Light wash — steppe stays visible */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/15 to-white/40" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent" />
 
       <div className="relative mx-auto flex max-w-7xl flex-col items-center px-4 pb-24 pt-36 text-center md:px-6 md:pt-44">
         <p className="animate-fade-up mb-4 text-[11px] font-semibold uppercase tracking-[0.24em] text-deep-blue/55">

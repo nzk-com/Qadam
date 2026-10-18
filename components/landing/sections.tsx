@@ -17,14 +17,14 @@ export async function Services() {
   const { t } = await getDictionary()
   const s = t.services
   return (
-    <section id="services" className="section-mist section-blend scroll-mt-28 lg:scroll-mt-20">
+    <section id="services" className="scroll-mt-28 lg:scroll-mt-20">
       <div className="mx-auto max-w-7xl px-4 py-20 md:px-6 md:py-24">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-deep-blue/45">{s.eyebrow}</p>
           <h2 className="mt-3 font-serif text-3xl font-medium tracking-tight text-deep-blue md:text-[2.5rem]">{s.title}</h2>
           <p className="mt-4 text-base leading-relaxed text-deep-blue/55">{s.text}</p>
         </div>
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {services.map((item, i) => {
             const info = s.items[item.id]
             return (
@@ -54,7 +54,7 @@ export async function Quality() {
   return (
     <section
       id="quality"
-      className="section-soft section-blend scroll-mt-28 lg:scroll-mt-20"
+      className="scroll-mt-28 lg:scroll-mt-20"
     >
       <div className="mx-auto max-w-7xl px-4 py-20 md:px-6 md:py-24">
         <div className="mx-auto max-w-2xl text-center">

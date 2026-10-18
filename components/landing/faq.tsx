@@ -5,7 +5,7 @@ export async function Faq() {
   const { t } = await getDictionary()
   const f = t.faq
   return (
-    <section id="faq" className="section-blend scroll-mt-28 lg:scroll-mt-20">
+    <section id="faq" className="scroll-mt-28 lg:scroll-mt-20">
       <div className="mx-auto max-w-7xl px-4 py-20 md:px-6 md:py-24">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-deep-blue/45">{f.eyebrow}</p>

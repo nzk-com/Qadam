@@ -94,7 +94,7 @@ export default function ClientCabinetPage() {
               {clientProjects.map((p) => (
                 <article
                   key={p.id}
-                  className="dash-card p-5 shadow-sm transition hover:border-primary/40"
+                  className="dash-card p-6 shadow-sm transition hover:border-primary/40"
                 >
                   <div className="flex flex-wrap items-start justify-between gap-3">
                     <div>

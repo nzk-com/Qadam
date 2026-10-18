@@ -17,7 +17,7 @@ export async function SiteHeader() {
   ]
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      <div className="mx-auto mt-4 flex h-14 max-w-6xl items-center justify-between gap-4 rounded-full border border-white/50 bg-white/40 px-5 shadow-[0_8px_32px_rgba(15,40,80,0.08)] backdrop-blur-2xl md:px-7">
+      <div className="mx-auto mt-4 flex h-14 max-w-7xl items-center justify-between gap-4 rounded-full border border-white/50 bg-white/40 px-5 shadow-[0_8px_32px_rgba(15,40,80,0.08)] backdrop-blur-2xl md:px-7">
         <Logo compact />
         <nav aria-label={t.nav.main} className="hidden items-center gap-8 text-[13px] font-medium text-deep-blue/75 md:flex">
           {links.map((l) => (
@@ -63,7 +63,7 @@ export async function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-white/55 via-white/35 to-[#eef5fa]" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#eef5fa] via-transparent to-white/20" />
 
-      <div className="relative mx-auto flex max-w-6xl flex-col items-center px-4 pb-24 pt-36 text-center md:px-6 md:pt-44">
+      <div className="relative mx-auto flex max-w-7xl flex-col items-center px-4 pb-24 pt-36 text-center md:px-6 md:pt-44">
         <p className="animate-fade-up mb-4 text-[11px] font-semibold uppercase tracking-[0.24em] text-deep-blue/55">
           Human data · Turkic languages
         </p>

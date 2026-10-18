@@ -18,7 +18,7 @@ export async function Services() {
   const s = t.services
   return (
     <section id="services" className="section-mist section-blend scroll-mt-28 lg:scroll-mt-20">
-      <div className="mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-24">
+      <div className="mx-auto max-w-7xl px-4 py-20 md:px-6 md:py-24">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-deep-blue/45">{s.eyebrow}</p>
           <h2 className="mt-3 font-serif text-3xl font-medium tracking-tight text-deep-blue md:text-[2.5rem]">{s.title}</h2>
@@ -30,7 +30,7 @@ export async function Services() {
             return (
               <article
                 key={item.id}
-                className="group relative overflow-hidden rounded-[1.35rem] border border-white/60 bg-white/50 p-7 shadow-[0_10px_40px_-16px_rgba(15,40,80,0.12)] backdrop-blur-xl transition duration-300 hover:-translate-y-1.5 hover:border-white/80 hover:bg-white/70 hover:shadow-[0_20px_50px_-16px_rgba(15,40,80,0.18)]"
+                className="group relative flex min-h-[260px] flex-col overflow-hidden rounded-[1.35rem] border border-white/60 bg-white/55 p-8 shadow-[0_10px_40px_-16px_rgba(15,40,80,0.12)] backdrop-blur-xl transition duration-300 hover:-translate-y-1.5 hover:border-white/80 hover:bg-white/75 hover:shadow-[0_20px_50px_-16px_rgba(15,40,80,0.18)]"
               >
                 <div className="absolute -right-6 -top-6 size-24 rounded-full bg-primary/5 transition group-hover:bg-primary/10" />
                 <span className="relative font-serif text-4xl font-medium tabular-nums text-deep-blue/15">0{i + 1}</span>
@@ -56,16 +56,16 @@ export async function Quality() {
       id="quality"
       className="section-soft section-blend scroll-mt-28 lg:scroll-mt-20"
     >
-      <div className="mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-24">
+      <div className="mx-auto max-w-7xl px-4 py-20 md:px-6 md:py-24">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-deep-blue/45">{q.eyebrow}</p>
           <h2 className="mt-3 font-serif text-3xl font-medium tracking-tight text-deep-blue md:text-[2.5rem]">{q.title}</h2>
         </div>
-        <ol className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <ol className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
           {q.steps.map((step, i) => (
             <li
               key={step.title}
-              className="group relative overflow-hidden rounded-[1.25rem] border border-white/60 bg-white/50 p-6 shadow-[0_10px_40px_-16px_rgba(15,40,80,0.1)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:bg-white/70"
+              className="group relative flex min-h-[220px] flex-col overflow-hidden rounded-[1.35rem] border border-white/60 bg-white/55 p-7 shadow-[0_10px_40px_-16px_rgba(15,40,80,0.1)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:bg-white/75"
             >
               <span className="bg-gradient-to-br from-primary to-sky-400 bg-clip-text font-serif text-3xl font-semibold text-transparent">
                 0{i + 1}
@@ -95,7 +95,7 @@ export async function Corpora() {
   const c = t.corpora
   return (
     <section id="corpora" className="scroll-mt-28 lg:scroll-mt-20">
-      <div className="mx-auto max-w-6xl px-4 py-20 md:px-6 md:py-24">
+      <div className="mx-auto max-w-7xl px-4 py-20 md:px-6 md:py-24">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-deep-blue/45">{c.eyebrow}</p>
           <h2 className="mt-3 font-serif text-3xl font-medium tracking-tight text-deep-blue md:text-[2.5rem]">{c.title}</h2>
@@ -148,7 +148,7 @@ export async function Footer() {
   const { t } = await getDictionary()
   return (
     <footer className="border-t border-white/40 bg-white/30 backdrop-blur-md">
-      <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-12 md:flex-row md:items-start md:justify-between md:px-6">
+      <div className="mx-auto flex max-w-7xl flex-col gap-8 px-4 py-12 md:flex-row md:items-start md:justify-between md:px-6">
         <div>
           <Logo />
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-deep-blue/50">

@@ -80,7 +80,7 @@ export default function AdminPanelPage() {
           </dl>
 
           <div className="mt-8 grid gap-6 lg:grid-cols-2">
-            <section className="admin-card p-5">
+            <section className="admin-card p-6">
               <div className="mb-4 flex items-center gap-2">
                 <Users className="size-5 text-sky-400" />
                 <h2 className="text-lg font-semibold text-white">Участники (демо)</h2>
@@ -103,7 +103,7 @@ export default function AdminPanelPage() {
               </ul>
             </section>
 
-            <section className="admin-card p-5">
+            <section className="admin-card p-6">
               <div className="mb-4 flex items-center gap-2">
                 <AlertTriangle className="size-5 text-amber-400" />
                 <h2 className="text-lg font-semibold text-white">Споры / низкое согласие</h2>
@@ -125,7 +125,7 @@ export default function AdminPanelPage() {
             </section>
           </div>
 
-          <section className="mt-6 admin-card p-5">
+          <section className="mt-6 admin-card p-6">
             <div className="mb-4 flex items-center gap-2">
               <Shield className="size-5 text-sky-400" />
               <h2 className="text-lg font-semibold text-white">Журнал аудита (демо)</h2>

@@ -41,9 +41,9 @@ export const en: Dictionary = {
     cabinet: 'Cabinet',
   },
   hero: {
-    title: 'Human-quality AI data for Turkic languages',
-    text: 'RLHF, red-teaming and corpora in Kazakh and Kyrgyz, built by certified native speakers with multi-stage quality control.',
-    ctaSecondary: 'Explore datasets',
+    title: 'Qadam — AI data in Kazakh and Kyrgyz',
+    text: 'RLHF, red-teaming and corpora by native speakers with multi-stage quality control. Response evaluation, preferences, and local expertise.',
+    ctaSecondary: 'View demo',
   },
   heroDemo: {
     label: 'Live example',

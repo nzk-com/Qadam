@@ -10,7 +10,7 @@ export async function SiteHeader() {
     { href: '#services', label: t.nav.services },
     { href: '#quality', label: t.nav.quality },
     { href: '#corpora', label: t.nav.corpora },
-    { href: '#workspace-link', label: 'Демо' },
+    { href: '#workspace-link', label: t.nav.demoShort },
     { href: '#faq', label: t.nav.faq },
   ]
   return (
@@ -35,7 +35,7 @@ export async function SiteHeader() {
             href="/workspace"
             className="rounded-full bg-deep-blue px-4 py-2 text-[13px] font-medium text-white shadow-md transition hover:bg-primary"
           >
-            Открыть демо
+            {t.nav.openDemo}
           </Link>
         </div>
       </div>
@@ -77,7 +77,7 @@ export async function Hero() {
             href="/workspace"
             className="inline-flex h-12 items-center justify-center rounded-full border border-white/70 bg-white/55 px-7 text-base font-medium text-deep-blue shadow-sm backdrop-blur-md transition hover:bg-white/80"
           >
-            Смотреть демо
+            {t.nav.watchDemo}
           </Link>
         </div>
 

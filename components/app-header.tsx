@@ -22,7 +22,7 @@ export function AppHeader() {
     { href: '/client', label: 'Клиент' },
     { href: '/workspace', label: 'Задания' },
     { href: '/academy', label: t.nav.academy },
-    { href: '/admin', label: 'Админ' },
+    { href: '/admin', label: t.nav.admin },
   ]
 
   return (

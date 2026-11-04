@@ -152,28 +152,28 @@ export async function Footer() {
         <div>
           <Logo />
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-deep-blue/50">
-            {t.meta?.description ?? 'Данные для ИИ человеческого качества на тюркских языках.'}
+            {t.meta.description}
           </p>
         </div>
         <div className="flex flex-wrap gap-10 text-sm">
           <div>
-            <p className="font-semibold text-deep-blue">Продукт</p>
+            <p className="font-semibold text-deep-blue">{t.nav.footerProduct}</p>
             <ul className="mt-3 space-y-2 text-deep-blue/55">
-              <li><a href="#services" className="hover:text-deep-blue">Услуги</a></li>
-              <li><a href="#quality" className="hover:text-deep-blue">Качество</a></li>
-              <li><Link href="/workspace" className="hover:text-deep-blue">Демо</Link></li>
+              <li><a href="#services" className="hover:text-deep-blue">{t.nav.services}</a></li>
+              <li><a href="#quality" className="hover:text-deep-blue">{t.nav.quality}</a></li>
+              <li><Link href="/workspace" className="hover:text-deep-blue">{t.nav.demoShort}</Link></li>
             </ul>
           </div>
           <div>
-            <p className="font-semibold text-deep-blue">Аккаунт</p>
+            <p className="font-semibold text-deep-blue">{t.nav.footerAccount}</p>
             <ul className="mt-3 space-y-2 text-deep-blue/55">
-              <li><Link href="/login" className="hover:text-deep-blue">Вход</Link></li>
-              <li><Link href="/register" className="hover:text-deep-blue">Регистрация</Link></li>
-              <li><Link href="/client" className="hover:text-deep-blue">Кабинет</Link></li>
+              <li><Link href="/login" className="hover:text-deep-blue">{t.nav.login}</Link></li>
+              <li><Link href="/register" className="hover:text-deep-blue">{t.nav.register}</Link></li>
+              <li><Link href="/client" className="hover:text-deep-blue">{t.nav.cabinet}</Link></li>
             </ul>
           </div>
           <div>
-            <p className="font-semibold text-deep-blue">Контакт</p>
+            <p className="font-semibold text-deep-blue">{t.nav.footerContact}</p>
             <a href="mailto:contact@qadam.ai" className="mt-3 inline-flex items-center gap-1.5 text-deep-blue/55 hover:text-deep-blue">
               <Mail className="size-3.5" /> contact@qadam.ai
             </a>

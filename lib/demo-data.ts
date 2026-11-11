@@ -18,28 +18,28 @@ export type Category =
   | 'finance'
 
 export type TagId =
-  | 'grammar'
-  | 'unnatural-language'
-  | 'terminology'
   | 'factual-error'
-  | 'hallucination'
+  | 'off-topic'
+  | 'incomplete-answer'
+  | 'unnatural-language'
+  | 'grammar'
+  | 'tone-style'
+  | 'code-switching'
   | 'unsafe'
   | 'cultural-mismatch'
-  | 'code-switching'
-  | 'incomplete-answer'
-  | 'overly-verbose'
+  | 'instruction-fail'
 
 export const allTags: TagId[] = [
-  'grammar',
-  'unnatural-language',
-  'terminology',
   'factual-error',
-  'hallucination',
+  'off-topic',
+  'incomplete-answer',
+  'unnatural-language',
+  'grammar',
+  'tone-style',
+  'code-switching',
   'unsafe',
   'cultural-mismatch',
-  'code-switching',
-  'incomplete-answer',
-  'overly-verbose',
+  'instruction-fail',
 ]
 
 export interface Answer {
@@ -63,11 +63,16 @@ export interface DemoTask {
 }
 
 const commonCriteria = [
-  'relevance',
-  'language-naturalness',
-  'clarity',
-  'safety',
-  'cultural-appropriateness',
+  'Фактическая правильность',
+  'Соответствие вопросу',
+  'Полнота',
+  'Естественность языка',
+  'Орфография и грамматика',
+  'Тон и стиль',
+  'KK/RU смешанная речь',
+  'Безопасность',
+  'Культурная уместность',
+  'Выполнение инструкции',
 ]
 
 // ---------- Helper to build tasks ----------

@@ -223,6 +223,8 @@ export const en: Dictionary = {
     urgencyLevels: { std: 'Standard', fast: 'Faster', rush: 'Rush' },
     estimate: 'Estimated cost',
     estimateNote: 'Includes double scoring and report. Not a binding offer.',
+    processLink: 'See the process in the demo workspace',
+    processHint: 'Opens the workspace: question, bot answers, 10 criteria and scoring — like a real pilot.',
     cta: 'Send request',
   },
   request: {

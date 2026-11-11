@@ -23,6 +23,19 @@ import { cn } from '@/lib/utils'
 
 const STORAGE_KEY = 'dala-ai-demo-progress-v1'
 
+const TAG_LABELS: Record<TagId, string> = {
+  'factual-error': 'Фактическая ошибка',
+  'off-topic': 'Не по вопросу',
+  'incomplete-answer': 'Неполный ответ',
+  'unnatural-language': 'Неестественный язык',
+  'grammar': 'Орфография / грамматика',
+  'tone-style': 'Тон и стиль',
+  'code-switching': 'KK/RU свитчинг',
+  'unsafe': 'Безопасность',
+  'cultural-mismatch': 'Культурная неуместность',
+  'instruction-fail': 'Не выполнена инструкция',
+}
+
 type Choice = 'A' | 'B' | 'C' | 'equal' | 'none' | 'cant'
 
 interface Evaluation {
@@ -174,10 +187,10 @@ export function Workspace() {
         <div className="mx-auto flex max-w-[1400px] flex-wrap items-center gap-3 px-4 py-3 md:px-6">
           <div className="min-w-0 flex-1">
             <p className="text-sm font-medium text-deep-blue">
-              Qadam · Демо-рабочая среда
+              Qadam · Демо: оценка ответов бота
             </p>
             <p className="text-xs text-muted-foreground">
-              {current ? `${current.id} · ${current.language} · ${current.taskType}` : 'Нет заданий'} · Демо
+              {current ? `${current.id} · ${current.language === 'kk' ? 'Қазақша' : current.language === 'ky' ? 'Кыргызча' : 'KK/RU'} · 10 критериев` : 'Нет заданий'} · не продажа, показ метода
             </p>
           </div>
           <div className="flex items-center gap-2 text-sm">
@@ -212,9 +225,9 @@ export function Workspace() {
                 onChange={(e) => setTypeFilter(e.target.value as any)}
               >
                 <option value="all">Все типы</option>
-                <option value="preference">Preference</option>
-                <option value="localization">Localization</option>
-                <option value="red-teaming">Red-teaming</option>
+                <option value="preference">Сравнение ответов</option>
+                <option value="localization">Локализация</option>
+                <option value="red-teaming">Безопасность</option>
               </select>
               <select
                 className="rounded-md border border-border bg-white px-2 py-1"
@@ -271,8 +284,9 @@ export function Workspace() {
             <div>
               <h3 className="mb-1 font-semibold text-deep-blue">Инструкция</h3>
               <p className="text-muted-foreground text-xs leading-relaxed">
-                Сравните ответы. Выберите лучший или отметьте равноценность / неудовлетворительность.
-                Добавьте теги ошибок и комментарий при необходимости.
+                Оцените ответы бота как в реальном пилоте: выберите лучший ответ по 10 критериям
+                (факт, полнота, естественность, грамматика, тон, KK/RU, безопасность, культура, инструкция).
+                Отметьте проблемы тегами.
               </p>
             </div>
             <div>
@@ -391,7 +405,7 @@ export function Workspace() {
               <div className="flex flex-wrap gap-1.5">
                 {allTags.map((tag) => (
                   <button
-                    key={tag}
+                    key={TAG_LABELS[tag] ?? tag}
                     type="button"
                     onClick={() => toggleTag(tag)}
                     className={cn(

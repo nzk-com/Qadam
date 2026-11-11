@@ -47,6 +47,14 @@ export function Calculator() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 md:grid-cols-5 md:px-6 md:py-20">
         <div className="md:col-span-2">
           <SectionHead index="05" eyebrow={c.eyebrow} title={c.title} text={c.text} />
+          <a
+            href="/workspace"
+            className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary underline-offset-4 hover:underline"
+          >
+            {c.processLink}
+            <span aria-hidden>→</span>
+          </a>
+          <p className="mt-2 max-w-sm text-xs leading-relaxed text-muted-foreground">{c.processHint}</p>
         </div>
         <div className="rounded-md border border-border bg-background p-6 md:col-span-3">
           <fieldset>

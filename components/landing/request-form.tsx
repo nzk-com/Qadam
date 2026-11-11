@@ -9,6 +9,9 @@ import { Button } from '@/components/ui/button'
 const field =
   'mt-1.5 w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/30'
 
+/** Direct FormSubmit (browser). Used if /api/request fails (rate limit etc.) */
+const FORM_FALLBACK = 'https://formsubmit.co/f6e02e421cc3402628113865db7b082b'
+
 export function RequestForm() {
   const { t } = useI18n()
   const r = t.request
@@ -22,18 +25,38 @@ export function RequestForm() {
     setError(false)
     const form = e.currentTarget
     const data = new FormData(form)
+    data.set('_subject', 'Qadam — новая заявка с сайта')
+    data.set('_template', 'table')
+    data.set('_captcha', 'false')
+
+    let ok = false
     try {
-      const res = await fetch('/api/request', {
-        method: 'POST',
-        body: data,
-      })
-      if (!res.ok) throw new Error('fail')
+      const res = await fetch('/api/request', { method: 'POST', body: data })
+      ok = res.ok
+    } catch {
+      ok = false
+    }
+
+    // Fallback: browser → FormSubmit. mode no-cors: letter often arrives, response unreadable
+    if (!ok) {
+      try {
+        await fetch(FORM_FALLBACK, {
+          method: 'POST',
+          body: data,
+          mode: 'no-cors',
+        })
+        ok = true
+      } catch {
+        ok = false
+      }
+    }
+
+    setSending(false)
+    if (ok) {
       setSent(true)
       form.reset()
-    } catch {
+    } else {
       setError(true)
-    } finally {
-      setSending(false)
     }
   }
 

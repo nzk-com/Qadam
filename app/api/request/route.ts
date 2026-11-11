@@ -1,33 +1,45 @@
 import { NextResponse } from 'next/server'
 
-const FORM_ENDPOINT = 'https://formsubmit.co/f6e02e421cc3402628113865db7b082b'
+const FORM_ENDPOINT = 'https://formsubmit.co/ajax/f6e02e421cc3402628113865db7b082b'
 
 export async function POST(req: Request) {
   try {
     const incoming = await req.formData()
-    const data = new FormData()
-    for (const [key, value] of incoming.entries()) {
-      data.append(key, value)
+    const payload: Record<string, string> = {
+      _subject: 'Qadam — новая заявка с сайта',
+      _template: 'table',
+      _captcha: 'false',
     }
-    data.set('_subject', 'Qadam — новая заявка с сайта')
-    data.set('_template', 'table')
-    data.set('_captcha', 'false')
+    for (const [key, value] of incoming.entries()) {
+      if (typeof value === 'string') payload[key] = value
+    }
 
     const res = await fetch(FORM_ENDPOINT, {
       method: 'POST',
-      body: data,
-      headers: { Accept: 'application/json' },
-      redirect: 'follow',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(payload),
     })
 
-    // FormSubmit may return 200 JSON or redirect HTML after success
-    if (res.ok || res.status === 302 || res.status === 200) {
+    const text = await res.text()
+    let json: { success?: boolean; message?: string } = {}
+    try {
+      json = JSON.parse(text)
+    } catch {
+      // HTML or empty
+    }
+
+    if (res.ok && json.success !== false) {
       return NextResponse.json({ ok: true })
     }
 
-    const text = await res.text().catch(() => '')
-    console.error('FormSubmit status', res.status, text.slice(0, 200))
-    return NextResponse.json({ ok: false }, { status: 502 })
+    console.error('FormSubmit', res.status, text.slice(0, 300))
+    return NextResponse.json(
+      { ok: false, status: res.status, message: json.message ?? 'upstream' },
+      { status: 502 },
+    )
   } catch (e) {
     console.error('FormSubmit error', e)
     return NextResponse.json({ ok: false }, { status: 500 })

@@ -47,14 +47,16 @@ export function Calculator() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 md:grid-cols-5 md:px-6 md:py-20">
         <div className="md:col-span-2">
           <SectionHead index="05" eyebrow={c.eyebrow} title={c.title} text={c.text} />
-          <a
-            href="/workspace"
-            className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary underline-offset-4 hover:underline"
-          >
-            {c.processLink}
-            <span aria-hidden>→</span>
-          </a>
-          <p className="mt-2 max-w-sm text-xs leading-relaxed text-muted-foreground">{c.processHint}</p>
+          <div className="mt-6 flex flex-col items-start gap-3">
+            <a
+              href="/workspace"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-primary/30 bg-white px-6 text-sm font-semibold text-primary shadow-sm transition hover:bg-primary hover:text-white"
+            >
+              {c.processLink}
+              <span aria-hidden>→</span>
+            </a>
+            <p className="max-w-sm text-xs leading-relaxed text-muted-foreground">{c.processHint}</p>
+          </div>
         </div>
         <div className="rounded-md border border-border bg-background p-6 md:col-span-3">
           <fieldset>
@@ -120,12 +122,20 @@ export function Calculator() {
               {fmt(estimate.low)} – {fmt(estimate.high)} ₸
             </p>
             <p className="mt-2 text-xs text-muted-foreground">{c.estimateNote}</p>
-            <a
-              href="#request"
-              className="mt-4 inline-flex h-10 items-center justify-center rounded-full bg-deep-blue px-5 text-sm font-medium text-white hover:bg-primary"
-            >
-              {c.cta}
-            </a>
+            <div className="mt-4 flex flex-wrap gap-2">
+              <a
+                href="/workspace"
+                className="inline-flex h-10 items-center justify-center rounded-full border border-deep-blue/20 bg-white px-5 text-sm font-medium text-deep-blue hover:bg-soft-blue"
+              >
+                {c.processLink}
+              </a>
+              <a
+                href="#request"
+                className="inline-flex h-10 items-center justify-center rounded-full bg-deep-blue px-5 text-sm font-medium text-white hover:bg-primary"
+              >
+                {c.cta}
+              </a>
+            </div>
           </div>
         </div>
       </div>

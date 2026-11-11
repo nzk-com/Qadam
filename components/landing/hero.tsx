@@ -9,8 +9,8 @@ export async function SiteHeader() {
   const links = [
     { href: '#services', label: t.nav.services },
     { href: '#quality', label: t.nav.quality },
-    { href: '#corpora', label: t.nav.corpora },
-    { href: '#workspace-link', label: t.nav.demoShort },
+    { href: '#calculator', label: t.nav.calculator },
+    { href: '#request', label: t.nav.pilot },
     { href: '#faq', label: t.nav.faq },
   ]
   return (
@@ -31,12 +31,12 @@ export async function SiteHeader() {
           >
             {t.nav.login}
           </Link>
-          <Link
-            href="/workspace"
+          <a
+            href="#request"
             className="rounded-full bg-deep-blue px-4 py-2 text-[13px] font-medium text-white shadow-md transition hover:bg-primary"
           >
             {t.nav.openDemo}
-          </Link>
+          </a>
         </div>
       </div>
     </header>
@@ -61,7 +61,7 @@ export async function Hero() {
         </p>
 
         <div className="animate-fade-up stagger-3 mt-8 flex flex-wrap items-center justify-center gap-2">
-          {['Қазақша', 'Кыргызча', 'KK / RU', 'Preference', 'Red-team'].map((tag) => (
+          {(h.tags ?? ['Қазақша', 'Кыргызча', 'KK / RU']).map((tag: string) => (
             <span
               key={tag}
               className="rounded-full border border-white/70 bg-white/55 px-3.5 py-1.5 text-xs font-medium text-deep-blue/85 shadow-sm backdrop-blur-md"
@@ -73,12 +73,12 @@ export async function Hero() {
 
         <div className="animate-fade-up stagger-4 mt-10 flex flex-wrap items-center justify-center gap-3">
           <PilotButton size="xl" />
-          <Link
-            href="/workspace"
+          <a
+            href="#quality"
             className="inline-flex h-12 items-center justify-center rounded-full border border-white/70 bg-white/55 px-7 text-base font-medium text-deep-blue shadow-sm backdrop-blur-md transition hover:bg-white/80"
           >
             {t.nav.watchDemo}
-          </Link>
+          </a>
         </div>
 
         <div id="workspace-link" className="animate-fade-up stagger-5 relative mt-14 w-full max-w-3xl">

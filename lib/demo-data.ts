@@ -619,11 +619,11 @@ export const glossary = [
 ] as const
 
 export const services = [
-  { id: 'rlhf', price: 1.2, status: 'available' as const },
-  { id: 'redteam', price: 2.5, status: 'available' as const },
-  { id: 'localization', price: 25, status: 'available' as const },
-  { id: 'corpora', price: 40, status: 'on-request' as const },
-  { id: 'transcription', price: 18, status: 'production' as const },
+  { id: 'rlhf', price: 850000, status: 'available' as const },
+  { id: 'redteam', price: 1700000, status: 'available' as const },
+  { id: 'localization', price: 0, status: 'available' as const },
+  { id: 'corpora', price: 0, status: 'on-request' as const },
+  { id: 'transcription', price: 0, status: 'production' as const },
 ] as const
 
 export const corpora = [

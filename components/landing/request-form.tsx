@@ -5,15 +5,44 @@ import { CheckCircle2 } from 'lucide-react'
 import { useI18n } from '@/components/i18n-provider'
 import { SectionHead } from '@/components/section-head'
 import { Button } from '@/components/ui/button'
-import { services } from '@/lib/demo-data'
 
 const field =
   'mt-1.5 w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/30'
 
+/** FormSubmit delivers to inbox after one-time email confirm */
+const FORM_ENDPOINT = 'https://formsubmit.co/Qdmm.startup@gmail.com'
+
 export function RequestForm() {
   const { t } = useI18n()
   const r = t.request
+  const [sending, setSending] = useState(false)
   const [sent, setSent] = useState(false)
+  const [error, setError] = useState(false)
+
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    setSending(true)
+    setError(false)
+    const form = e.currentTarget
+    const data = new FormData(form)
+    data.set('_subject', 'Qadam — новая заявка с сайта')
+    data.set('_template', 'table')
+    data.set('_captcha', 'false')
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        body: data,
+        headers: { Accept: 'application/json' },
+      })
+      if (!res.ok) throw new Error('fail')
+      setSent(true)
+      form.reset()
+    } catch {
+      setError(true)
+    } finally {
+      setSending(false)
+    }
+  }
 
   return (
     <section id="request" className="scroll-mt-28 border-b border-border lg:scroll-mt-20">
@@ -26,13 +55,8 @@ export function RequestForm() {
             <p className="text-sm text-muted-foreground">{r.successText}</p>
           </div>
         ) : (
-          <form
-            className="grid gap-4 rounded-md border border-border p-6"
-            onSubmit={(e) => {
-              e.preventDefault()
-              setSent(true)
-            }}
-          >
+          <form className="grid gap-4 rounded-md border border-border p-6" onSubmit={onSubmit}>
+            <input type="hidden" name="_next" value="https://dalaaii.vercel.app/#request" />
             <div className="grid gap-4 sm:grid-cols-2">
               <label className="text-sm font-medium">
                 {r.name}
@@ -49,21 +73,21 @@ export function RequestForm() {
             </label>
             <label className="text-sm font-medium">
               {r.service}
-              <select name="service" className={field} defaultValue="rlhf">
-                {services.map((s) => (
-                  <option key={s.id} value={s.id}>
-                    {t.services.items[s.id].title}
-                  </option>
-                ))}
+              <select name="package" className={field} defaultValue="100">
+                <option value="100">{r.opt100}</option>
+                <option value="1000">{r.opt1000}</option>
+                <option value="subscribe">{r.optSub}</option>
               </select>
             </label>
             <label className="text-sm font-medium">
               {r.about}
               <textarea name="message" rows={4} className={field} placeholder={r.placeholder} />
             </label>
-            <Button type="submit" size="lg" className="h-11">
-              {r.submit}
+            {error && <p className="text-sm text-red-600">{r.errorText}</p>}
+            <Button type="submit" size="lg" className="h-11" disabled={sending}>
+              {sending ? r.sending : r.submit}
             </Button>
+            <p className="text-xs text-muted-foreground">{r.privacy}</p>
           </form>
         )}
       </div>

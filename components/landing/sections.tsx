@@ -37,7 +37,7 @@ export async function Services() {
                 <h3 className="relative mt-3 font-serif text-xl font-medium text-deep-blue">{info.title}</h3>
                 <p className="relative mt-2 flex-1 text-sm leading-relaxed text-deep-blue/55">{info.text}</p>
                 <p className="relative mt-6 border-t border-deep-blue/8 pt-4 text-sm font-semibold text-deep-blue">
-                  {formatMessage(s.priceLine, { price: `$${item.price}`, unit: info.unit })}
+                  {formatMessage(s.priceLine, { price: item.id === 'rlhf' ? '850 000 ₸' : item.id === 'redteam' ? '1 700 000 ₸' : item.id === 'corpora' ? '—' : '', unit: info.unit })}
                 </p>
               </article>
             )
@@ -52,29 +52,34 @@ export async function Quality() {
   const { t } = await getDictionary()
   const q = t.quality
   return (
-    <section
-      id="quality"
-      className="scroll-mt-28 lg:scroll-mt-20"
-    >
+    <section id="quality" className="scroll-mt-28 lg:scroll-mt-20">
       <div className="mx-auto max-w-7xl px-4 py-20 md:px-6 md:py-24">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-deep-blue/45">{q.eyebrow}</p>
           <h2 className="mt-3 font-serif text-3xl font-medium tracking-tight text-deep-blue md:text-[2.5rem]">{q.title}</h2>
+          {q.lead ? <p className="mt-4 text-base leading-relaxed text-deep-blue/55">{q.lead}</p> : null}
         </div>
-        <ol className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
-          {q.steps.map((step, i) => (
+        <ol className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+          {q.criteria.map((item, i) => (
             <li
-              key={step.title}
-              className="group relative flex min-h-[220px] flex-col overflow-hidden rounded-[1.35rem] border border-white/60 bg-white/55 p-7 shadow-[0_10px_40px_-16px_rgba(15,40,80,0.1)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:bg-white/75"
+              key={item}
+              className="rounded-[1.1rem] border border-white/60 bg-white/55 px-4 py-4 text-sm text-deep-blue shadow-[0_8px_28px_-14px_rgba(15,40,80,0.1)] backdrop-blur-xl"
             >
-              <span className="bg-gradient-to-br from-primary to-sky-400 bg-clip-text font-serif text-3xl font-semibold text-transparent">
-                0{i + 1}
-              </span>
-              <h3 className="mt-3 text-[15px] font-semibold text-deep-blue">{step.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-deep-blue/55">{step.text}</p>
+              <span className="font-semibold text-primary">{i + 1}.</span> {item}
             </li>
           ))}
         </ol>
+        <div className="mt-10 grid gap-5 md:grid-cols-3">
+          {q.metrics.map((m) => (
+            <div
+              key={m.value}
+              className="rounded-[1.35rem] border border-white/60 bg-white/60 p-7 shadow-[0_10px_40px_-16px_rgba(15,40,80,0.1)] backdrop-blur-xl"
+            >
+              <p className="font-serif text-3xl font-semibold text-primary">{m.value}</p>
+              <p className="mt-3 text-sm leading-relaxed text-deep-blue/60">{m.text}</p>
+            </div>
+          ))}
+        </div>
         <ul className="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm text-deep-blue/65">
           {q.assurances.map((x) => (
             <li key={x} className="flex items-center gap-2">
@@ -174,8 +179,8 @@ export async function Footer() {
           </div>
           <div>
             <p className="font-semibold text-deep-blue">{t.nav.footerContact}</p>
-            <a href="mailto:contact@qadam.ai" className="mt-3 inline-flex items-center gap-1.5 text-deep-blue/55 hover:text-deep-blue">
-              <Mail className="size-3.5" /> contact@qadam.ai
+            <a href="mailto:Qdmm.startup@gmail.com" className="mt-3 inline-flex items-center gap-1.5 text-deep-blue/55 hover:text-deep-blue">
+              <Mail className="size-3.5" /> Qdmm.startup@gmail.com
             </a>
           </div>
         </div>

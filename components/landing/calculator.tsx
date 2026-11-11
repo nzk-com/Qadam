@@ -3,11 +3,19 @@
 import { useMemo, useState } from 'react'
 import { useI18n } from '@/components/i18n-provider'
 import { SectionHead } from '@/components/section-head'
-import { services } from '@/lib/demo-data'
 import { formatNumber } from '@/lib/i18n/format'
 import { cn } from '@/lib/utils'
 
-type ServiceId = (typeof services)[number]['id']
+const volumes = [
+  { id: 100, base: 850_000 },
+  { id: 1000, base: 1_700_000 },
+] as const
+
+const langMult: Record<string, number> = {
+  kk: 1,
+  ky: 1.1,
+  mix: 1.15,
+}
 
 const urgency = [
   { id: 'std', k: 1 },
@@ -15,35 +23,24 @@ const urgency = [
   { id: 'rush', k: 1.5 },
 ] as const
 
-const defaults: Record<ServiceId, number> = {
-  rlhf: 5000,
-  redteam: 1000,
-  localization: 40,
-  corpora: 20,
-  transcription: 100,
-}
-
 const choice = (active: boolean) =>
   active ? 'border-primary bg-primary text-primary-foreground' : 'border-border hover:bg-secondary'
 
 export function Calculator() {
   const { locale, t } = useI18n()
   const c = t.calculator
-  const [serviceId, setServiceId] = useState<ServiceId>('rlhf')
-  const [volume, setVolume] = useState(defaults.rlhf)
-  const [langs, setLangs] = useState(1)
+  const [volume, setVolume] = useState<(typeof volumes)[number]['id']>(100)
+  const [lang, setLang] = useState<'kk' | 'ky' | 'mix'>('kk')
   const [urg, setUrg] = useState<(typeof urgency)[number]['id']>('std')
 
-  const service = services.find((s) => s.id === serviceId)!
   const estimate = useMemo(() => {
+    const pack = volumes.find((v) => v.id === volume)!
     const k = urgency.find((u) => u.id === urg)!.k
-    const langK = langs === 2 ? 1.8 : 1
-    const base = volume * service.price * k * langK
-    return { low: base * 0.85, high: base * 1.15 }
-  }, [service, volume, langs, urg])
+    const base = pack.base * langMult[lang] * k
+    return { low: Math.round(base * 0.9), high: Math.round(base * 1.1) }
+  }, [volume, lang, urg])
 
   const fmt = (n: number) => formatNumber(locale, n)
-  const large = service.id === 'rlhf' || service.id === 'redteam'
 
   return (
     <section id="calculator" className="scroll-mt-28 border-b border-border bg-secondary lg:scroll-mt-20">
@@ -53,87 +50,74 @@ export function Calculator() {
         </div>
         <div className="rounded-md border border-border bg-background p-6 md:col-span-3">
           <fieldset>
-            <legend className="text-sm font-medium">{c.service}</legend>
+            <legend className="text-sm font-medium">{c.volume}</legend>
             <div className="mt-2 flex flex-wrap gap-2">
-              {services.map((s) => (
+              {volumes.map((v) => (
                 <button
-                  key={s.id}
+                  key={v.id}
                   type="button"
-                  aria-pressed={serviceId === s.id}
-                  onClick={() => {
-                    setServiceId(s.id)
-                    setVolume(defaults[s.id])
-                  }}
-                  className={cn('rounded-md border px-3 py-1.5 text-sm transition-colors', choice(serviceId === s.id))}
+                  aria-pressed={volume === v.id}
+                  onClick={() => setVolume(v.id)}
+                  className={cn('rounded-md border px-3 py-1.5 text-sm transition-colors', choice(volume === v.id))}
                 >
-                  {t.services.items[s.id].title}
+                  {v.id === 100 ? c.vol100 : c.vol1000}
                 </button>
               ))}
             </div>
           </fieldset>
 
-          <div className="mt-6">
-            <label htmlFor="volume" className="flex items-baseline justify-between text-sm font-medium">
-              <span>{c.volume}</span>
-              <span className="font-normal text-muted-foreground">
-                {fmt(volume)} · {t.services.items[service.id].unitShort}
-              </span>
-            </label>
-            <input
-              id="volume"
-              type="range"
-              min={10}
-              max={large ? 20000 : 500}
-              step={large ? 10 : 1}
-              value={volume}
-              onChange={(e) => setVolume(Number(e.target.value))}
-              className="mt-3 w-full accent-terracotta"
-            />
-          </div>
+          <fieldset className="mt-6">
+            <legend className="text-sm font-medium">{c.languages}</legend>
+            <div className="mt-2 flex flex-wrap gap-2">
+              {(
+                [
+                  ['kk', c.langKk],
+                  ['ky', c.langKy],
+                  ['mix', c.langMix],
+                ] as const
+              ).map(([id, label]) => (
+                <button
+                  key={id}
+                  type="button"
+                  aria-pressed={lang === id}
+                  onClick={() => setLang(id)}
+                  className={cn('rounded-md border px-3 py-1.5 text-sm', choice(lang === id))}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          </fieldset>
 
-          <div className="mt-6 grid gap-6 sm:grid-cols-2">
-            <fieldset>
-              <legend className="text-sm font-medium">{c.languages}</legend>
-              <div className="mt-2 flex gap-2">
-                {[
-                  [1, c.langOne],
-                  [2, c.langBoth],
-                ].map(([v, l]) => (
-                  <button
-                    key={v}
-                    type="button"
-                    aria-pressed={langs === v}
-                    onClick={() => setLangs(v as number)}
-                    className={cn('flex-1 rounded-md border px-3 py-1.5 text-sm', choice(langs === v))}
-                  >
-                    {l}
-                  </button>
-                ))}
-              </div>
-            </fieldset>
-            <fieldset>
-              <legend className="text-sm font-medium">{c.urgency}</legend>
-              <div className="mt-2 flex gap-2">
-                {urgency.map((u) => (
-                  <button
-                    key={u.id}
-                    type="button"
-                    aria-pressed={urg === u.id}
-                    onClick={() => setUrg(u.id)}
-                    className={cn('flex-1 rounded-md border px-2 py-1.5 text-sm', choice(urg === u.id))}
-                  >
-                    {c.urgencyLevels[u.id]}
-                  </button>
-                ))}
-              </div>
-            </fieldset>
-          </div>
+          <fieldset className="mt-6">
+            <legend className="text-sm font-medium">{c.urgency}</legend>
+            <div className="mt-2 flex gap-2">
+              {urgency.map((u) => (
+                <button
+                  key={u.id}
+                  type="button"
+                  aria-pressed={urg === u.id}
+                  onClick={() => setUrg(u.id)}
+                  className={cn('flex-1 rounded-md border px-2 py-1.5 text-sm', choice(urg === u.id))}
+                >
+                  {c.urgencyLevels[u.id]}
+                </button>
+              ))}
+            </div>
+          </fieldset>
 
           <div className="mt-8 rounded-md border border-border bg-secondary p-5" aria-live="polite">
             <p className="text-sm text-muted-foreground">{c.estimate}</p>
-            <p className="mt-1 font-serif text-3xl font-semibold text-primary">
-              ${fmt(estimate.low)} – ${fmt(estimate.high)}
+            <p className="mt-2 font-serif text-3xl font-medium text-deep-blue">
+              {fmt(estimate.low)} – {fmt(estimate.high)} ₸
             </p>
+            <p className="mt-2 text-xs text-muted-foreground">{c.estimateNote}</p>
+            <a
+              href="#request"
+              className="mt-4 inline-flex h-10 items-center justify-center rounded-full bg-deep-blue px-5 text-sm font-medium text-white hover:bg-primary"
+            >
+              {c.cta}
+            </a>
           </div>
         </div>
       </div>

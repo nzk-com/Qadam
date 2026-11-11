@@ -10,7 +10,7 @@ const field =
   'mt-1.5 w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/30'
 
 /** FormSubmit delivers to inbox after one-time email confirm */
-const FORM_ENDPOINT = 'https://formsubmit.co/Qdmm.startup@gmail.com'
+const FORM_ENDPOINT = 'https://formsubmit.co/f6e02e421cc3402628113865db7b082b'
 
 export function RequestForm() {
   const { t } = useI18n()

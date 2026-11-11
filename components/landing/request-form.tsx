@@ -9,9 +9,6 @@ import { Button } from '@/components/ui/button'
 const field =
   'mt-1.5 w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/30'
 
-/** FormSubmit delivers to inbox after one-time email confirm */
-const FORM_ENDPOINT = 'https://formsubmit.co/f6e02e421cc3402628113865db7b082b'
-
 export function RequestForm() {
   const { t } = useI18n()
   const r = t.request
@@ -25,14 +22,10 @@ export function RequestForm() {
     setError(false)
     const form = e.currentTarget
     const data = new FormData(form)
-    data.set('_subject', 'Qadam — новая заявка с сайта')
-    data.set('_template', 'table')
-    data.set('_captcha', 'false')
     try {
-      const res = await fetch(FORM_ENDPOINT, {
+      const res = await fetch('/api/request', {
         method: 'POST',
         body: data,
-        headers: { Accept: 'application/json' },
       })
       if (!res.ok) throw new Error('fail')
       setSent(true)
@@ -56,7 +49,6 @@ export function RequestForm() {
           </div>
         ) : (
           <form className="grid gap-4 rounded-md border border-border p-6" onSubmit={onSubmit}>
-            <input type="hidden" name="_next" value="https://dalaaii.vercel.app/#request" />
             <div className="grid gap-4 sm:grid-cols-2">
               <label className="text-sm font-medium">
                 {r.name}

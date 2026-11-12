@@ -10,7 +10,6 @@ export async function SiteHeader() {
     { href: '#services', label: t.nav.services },
     { href: '#quality', label: t.nav.quality },
     { href: '#calculator', label: t.nav.calculator },
-    { href: '#request', label: t.nav.pilot },
     { href: '#faq', label: t.nav.faq },
   ]
   return (

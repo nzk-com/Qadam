@@ -131,7 +131,7 @@ export const en: Dictionary = {
       },
       redteam: {
         title: 'Pack: 1,000 answers',
-        text: 'Scale after the pilot. Same criteria, lower per-answer price. ≈ 1,500 ₸ per answer.',
+        text: 'Scale after the pilot. Same criteria, lower per-answer price. ≈ 1,700 ₸ per answer.',
         unit: '',
         unitShort: '×1000',
       },

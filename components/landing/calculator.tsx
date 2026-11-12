@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils'
 
 const volumes = [
   { id: 100, base: 350_000 },
-  { id: 1000, base: 1_500_000 },
+  { id: 1000, base: 1_700_000 },
 ] as const
 
 const langMult: Record<string, number> = {

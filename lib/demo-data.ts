@@ -624,11 +624,9 @@ export const glossary = [
 ] as const
 
 export const services = [
-  { id: 'rlhf', price: 850000, status: 'available' as const },
-  { id: 'redteam', price: 1700000, status: 'available' as const },
-  { id: 'localization', price: 0, status: 'available' as const },
-  { id: 'corpora', price: 0, status: 'on-request' as const },
-  { id: 'transcription', price: 0, status: 'production' as const },
+  { id: 'rlhf', price: 350000, status: 'available' as const },
+  { id: 'redteam', price: 1500000, status: 'available' as const },
+  { id: 'corpora', price: 180000, status: 'available' as const },
 ] as const
 
 export const corpora = [
@@ -691,7 +689,7 @@ export const heroDemo = {
   note: 'Демо. Проценты качества не подтверждены.',
   expert: {
     best: 'A',
-    tags: ['unsafe', 'incomplete-answer'] as TagId[],
+    tags: ['unsafe'] as TagId[],
   },
   tags: [
     'grammar',

@@ -45,7 +45,6 @@ export function HeroDemo() {
           <p lang="kk" className="mt-1 font-medium leading-snug">
             {heroDemo.prompt}
           </p>
-          <p className="mt-1 text-sm text-muted-foreground">{t.rlhf.promptTranslation}</p>
         </div>
 
         <fieldset disabled={checked} className="min-w-0">
@@ -135,7 +134,7 @@ export function HeroDemo() {
         <div className="min-w-0">
           {!checked && !best && <p className="text-xs text-muted-foreground">{d.hint}</p>}
           {(checked || best) && (
-            <Link href="/rlhf" className="inline-flex items-center gap-1.5 text-sm text-primary hover:underline">
+            <Link href="/workspace" className="inline-flex items-center gap-1.5 text-sm text-primary hover:underline">
               {d.open}
               <ArrowRight className="size-4" />
             </Link>

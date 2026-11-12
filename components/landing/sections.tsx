@@ -24,7 +24,7 @@ export async function Services() {
           <h2 className="mt-3 font-serif text-3xl font-medium tracking-tight text-deep-blue md:text-[2.5rem]">{s.title}</h2>
           <p className="mt-4 text-base leading-relaxed text-deep-blue/55">{s.text}</p>
         </div>
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((item, i) => {
             const info = s.items[item.id]
             return (
@@ -37,7 +37,7 @@ export async function Services() {
                 <h3 className="relative mt-3 font-serif text-xl font-medium text-deep-blue">{info.title}</h3>
                 <p className="relative mt-2 flex-1 text-sm leading-relaxed text-deep-blue/55">{info.text}</p>
                 <p className="relative mt-6 border-t border-deep-blue/8 pt-4 text-sm font-semibold text-deep-blue">
-                  {formatMessage(s.priceLine, { price: item.id === 'rlhf' ? '850 000 ₸' : item.id === 'redteam' ? '1 700 000 ₸' : item.id === 'corpora' ? '—' : '', unit: info.unit })}
+                  {formatMessage(s.priceLine, { price: item.id === 'rlhf' ? '350 000 ₸' : item.id === 'redteam' ? '1 500 000 ₸' : item.id === 'corpora' ? '180 000 ₸' : '', unit: info.unit })}
                 </p>
               </article>
             )

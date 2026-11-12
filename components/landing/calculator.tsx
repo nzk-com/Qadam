@@ -7,14 +7,14 @@ import { formatNumber } from '@/lib/i18n/format'
 import { cn } from '@/lib/utils'
 
 const volumes = [
-  { id: 100, base: 850_000 },
-  { id: 1000, base: 1_700_000 },
+  { id: 100, base: 350_000 },
+  { id: 1000, base: 1_500_000 },
 ] as const
 
 const langMult: Record<string, number> = {
   kk: 1,
-  ky: 1.1,
   mix: 1.15,
+  ky: 1.2,
 }
 
 const urgency = [
@@ -33,11 +33,10 @@ export function Calculator() {
   const [lang, setLang] = useState<'kk' | 'ky' | 'mix'>('kk')
   const [urg, setUrg] = useState<(typeof urgency)[number]['id']>('std')
 
-  const estimate = useMemo(() => {
+  const price = useMemo(() => {
     const pack = volumes.find((v) => v.id === volume)!
     const k = urgency.find((u) => u.id === urg)!.k
-    const base = pack.base * langMult[lang] * k
-    return { low: Math.round(base * 0.9), high: Math.round(base * 1.1) }
+    return Math.round(pack.base * langMult[lang] * k)
   }, [volume, lang, urg])
 
   const fmt = (n: number) => formatNumber(locale, n)
@@ -82,8 +81,8 @@ export function Calculator() {
               {(
                 [
                   ['kk', c.langKk],
-                  ['ky', c.langKy],
                   ['mix', c.langMix],
+                  ['ky', c.langKy],
                 ] as const
               ).map(([id, label]) => (
                 <button
@@ -118,9 +117,7 @@ export function Calculator() {
 
           <div className="mt-8 rounded-md border border-border bg-secondary p-5" aria-live="polite">
             <p className="text-sm text-muted-foreground">{c.estimate}</p>
-            <p className="mt-2 font-serif text-3xl font-medium text-deep-blue">
-              {fmt(estimate.low)} – {fmt(estimate.high)} ₸
-            </p>
+            <p className="mt-2 font-serif text-3xl font-medium text-deep-blue">≈ {fmt(price)} ₸</p>
             <p className="mt-2 text-xs text-muted-foreground">{c.estimateNote}</p>
             <div className="mt-4 flex flex-wrap gap-2">
               <a

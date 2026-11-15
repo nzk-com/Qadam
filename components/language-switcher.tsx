@@ -14,7 +14,10 @@ export function LanguageSwitcher() {
     <div
       role="group"
       aria-label={t.topbar.language}
-      className={cn('flex items-center divide-x divide-white/20', pending && 'opacity-60')}
+      className={cn(
+        'flex items-center rounded-full border border-deep-blue/15 bg-white/80 p-0.5 shadow-sm backdrop-blur-md',
+        pending && 'opacity-60',
+      )}
     >
       {localeOptions.map((o) => {
         const active = o.locale === locale
@@ -31,11 +34,13 @@ export function LanguageSwitcher() {
               if (!active) startTransition(() => setLocale(o.locale))
             }}
             className={cn(
-              'px-3 text-xs font-medium tracking-wide transition-colors first:pl-0 last:pr-0',
-              active ? 'text-white' : 'text-white/60 hover:text-white',
+              'rounded-full px-2.5 py-1 text-[11px] font-semibold tracking-wide transition-colors',
+              active
+                ? 'bg-deep-blue text-white shadow-sm'
+                : 'text-deep-blue/55 hover:bg-deep-blue/8 hover:text-deep-blue',
             )}
           >
-            <span className={cn('border-b pb-0.5', active ? 'border-sand' : 'border-transparent')}>{o.short}</span>
+            {o.short}
           </button>
         )
       })}

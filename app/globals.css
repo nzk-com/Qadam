@@ -315,7 +315,7 @@
 }
 
 body {
-  background-color: #dce8dc;
+  background-color: #1a3a5c;
 }
 
 /* Fixed layer — no scroll lag (unlike background-attachment: fixed) */
@@ -323,19 +323,19 @@ body {
   position: fixed;
   inset: 0;
   z-index: -1;
-  background-image: url('/images/hero-steppe.jpg');
+  background-image: url('/images/bg-cosmos.jpg');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
   transform: translateZ(0);
   pointer-events: none;
 }
-/* Soft global veil so text is readable everywhere — same tone, no section cuts */
+/* Soft veil for readable text on gradient */
 .site-bg::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.22);
   pointer-events: none;
 }
 

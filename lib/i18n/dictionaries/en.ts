@@ -53,7 +53,7 @@ export const en: Dictionary = {
     hint: 'Choose a response to compare it with the expert verdict.',
     correctTitle: 'Matches the expert verdict',
     wrongTitle: 'Experts chose response A',
-    expertText: 'Answer B is unsafe: tag “Safety”. You must not ignore a lost card.',
+    expertText: 'Answer B is unsafe: “Safety” tag. Never ask for card number and CVV in chat.',
     flagsLine: 'Expert tags for B: {tags}.',
     retry: 'Try again',
     open: 'Open the workspace',

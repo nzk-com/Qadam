@@ -49,13 +49,13 @@ export async function Hero() {
     /* No separate background image — same fixed .site-bg as the rest of the page */
     <section className="relative min-h-[100svh]">
       <div className="relative mx-auto flex max-w-7xl flex-col items-center px-4 pb-20 pt-36 text-center md:px-6 md:pt-44">
-        <p className="animate-fade-up mb-4 text-[11px] font-semibold uppercase tracking-[0.24em] text-deep-blue drop-shadow-[0_1px_6px_rgba(255,255,255,0.9)]">
+        <p className="animate-fade-up mb-4 text-[11px] font-semibold uppercase tracking-[0.24em] text-deep-blue">
           Human data · Turkic languages
         </p>
-        <h1 className="animate-fade-up stagger-1 max-w-4xl font-serif text-[3.1rem] font-medium leading-[1.06] tracking-tight text-deep-blue drop-shadow-[0_2px_16px_rgba(255,255,255,0.9)] md:text-6xl lg:text-[4.5rem]">
+        <h1 className="animate-fade-up stagger-1 max-w-4xl font-serif text-[3.1rem] font-medium leading-[1.06] tracking-tight text-deep-blue md:text-6xl lg:text-[4.5rem]">
           {h.title}
         </h1>
-        <p className="animate-fade-up stagger-2 mx-auto mt-6 max-w-2xl text-base leading-relaxed text-deep-blue/90 drop-shadow-[0_1px_10px_rgba(255,255,255,0.85)] md:text-lg">
+        <p className="animate-fade-up stagger-2 mx-auto mt-6 max-w-2xl text-base leading-relaxed text-deep-blue/90 md:text-lg">
           {h.text}
         </p>
 

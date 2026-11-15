@@ -329,14 +329,11 @@ body {
   background-repeat: no-repeat;
   transform: translateZ(0);
   pointer-events: none;
+  image-rendering: auto;
 }
-/* Soft veil for readable text on gradient */
+/* No white veil — show gradient clearly */
 .site-bg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.22);
-  pointer-events: none;
+  display: none;
 }
 
 @layer utilities {

@@ -47,7 +47,7 @@ export const en: Dictionary = {
     tags: ['Kazakh', 'Kyrgyz', 'KK / RU', '100 answers', 'Report'],
   },
   heroDemo: {
-    label: 'Live example',
+    label: 'Example',
     legend: 'Which response is more natural and accurate?',
     check: 'Check my answer',
     hint: 'Choose a response to compare it with the expert verdict.',

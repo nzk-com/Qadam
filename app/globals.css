@@ -315,7 +315,7 @@
 }
 
 body {
-  background-color: #1a3a5c;
+  background-color: #6b8f6e;
 }
 
 /* Fixed layer — no scroll lag (unlike background-attachment: fixed) */
@@ -323,7 +323,7 @@ body {
   position: fixed;
   inset: 0;
   z-index: -1;
-  background-image: url('/images/bg-cosmos.jpg');
+  background-image: url('/images/bg-mountains.jpg');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;

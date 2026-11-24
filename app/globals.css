@@ -49,7 +49,7 @@
   color-scheme: light;
   /* Qadam blue palette */
   --background: #FFFFFF;
-  --foreground: #172B45;
+  --foreground: #1A2744;
   --card: #FFFFFF;
   --card-foreground: #172B45;
   --popover: #FFFFFF;
@@ -59,7 +59,7 @@
   --secondary: #F5FAFF;
   --secondary-foreground: #153B70;
   --muted: #F5FAFF;
-  --muted-foreground: #526781;
+  --muted-foreground: #455A75;
   --accent: #DCEEFF;
   --accent-foreground: #153B70;
   --destructive: #DC2626;
@@ -83,7 +83,7 @@
   /* Custom tokens */
   --soft-blue: #DCEEFF;
   --deco-blue: #A9D5F5;
-  --deep-blue: #153B70;
+  --deep-blue: #1B3A6B;
   --hover-primary: #1D4ED8;
   --success: #16A34A;
 }
@@ -315,23 +315,22 @@
 }
 
 body {
-  background-color: #6b8f6e;
+  background-color: #e8f0fa;
 }
 
-/* Fixed layer — no scroll lag (unlike background-attachment: fixed) */
+/* Fixed layer — no scroll lag */
 .site-bg {
   position: fixed;
   inset: 0;
   z-index: -1;
-  background-image: url('/images/bg-mountains.jpg');
+  background-color: #e8f0fa;
+  background-image: url('/images/bg-pastel.jpg');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
   transform: translateZ(0);
   pointer-events: none;
-  image-rendering: auto;
 }
-/* No white veil — show gradient clearly */
 .site-bg::after {
   display: none;
 }
